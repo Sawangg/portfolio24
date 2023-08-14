@@ -1,28 +1,60 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    // Type Checking
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "useUnknownInCatchVariables": true,
+
+    // Modules
+    "baseUrl": ".",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "paths": {
+      "@type/*": ["./src/type/*"],
+      "@actions/": ["./src/app/_actions/*"],
+      "@db/*": ["./src/db/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@ui/*": ["./src/ui/*"],
+      "@public/*": ["./public/*"],
+      "@styles/*": ["./src/styles/*"]
+    },
+
+    // Language and Environment
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "preserve",
+
+    // Interop Constraints
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    // Completeness
+    "skipLibCheck": true,
+
+    // Emit
+    "noEmit": true,
+
+    // Projects
     "incremental": true,
+
+    // JavaScript Support
+    "allowJs": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [".next", "node_modules"]
 }

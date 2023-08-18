@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -14,21 +15,23 @@ export type ActiveLinkProps = React.DetailedHTMLProps<
 
 export const ActiveLink = ({ href, children, className }: ActiveLinkProps) => {
   const pathname = usePathname();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.div
-      initial={{ borderWidth: 0 }}
-      animate={{ borderWidth: "100%" }}
-      whileHover="hover"
-      transition={{
-        duration: 0.5,
-        delay: 0,
-      }}
-      className="border border-x-0 border-t-0"
+    <div
+      className="relative max-w-fit"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <Link href={href} className={cn(pathname === href ? `border border-x-0 border-t-0 ${className}` : "")}>
-        {children}
-      </Link>
-    </motion.div>
+      <Link href={href}>{children}</Link>
+      <motion.hr
+        initial={{ width: 0 }}
+        animate={{ width: pathname === href || isHovered ? "100%" : 0 }}
+        transition={{
+          duration: 0.3,
+        }}
+        className={cn("mt-4 h-[1px]", className)}
+      />
+    </div>
   );
 };

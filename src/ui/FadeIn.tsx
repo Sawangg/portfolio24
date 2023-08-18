@@ -1,21 +1,32 @@
 "use client";
 
-import { useRef, type DetailedHTMLProps, type HTMLAttributes, type ReactNode } from "react";
+import { useRef } from "react";
 import { motion, useInView, type HTMLMotionProps } from "framer-motion";
 
 type MotionComponentProps = {
   as?: keyof JSX.IntrinsicElements;
 } & HTMLMotionProps<"div">;
 
-export type FadeInProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
+export type FadeInProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
   repeat?: boolean;
   startY?: number;
   duration?: number;
   delay?: number;
-  children: ReactNode;
+  trigger?: boolean;
+  children: React.ReactNode;
 } & MotionComponentProps;
 
-export const FadeIn = ({ as = "div", repeat, startY, duration, delay, children, className, ...rest }: FadeInProps) => {
+export const FadeIn = ({
+  as = "div",
+  repeat,
+  startY,
+  duration,
+  delay,
+  trigger,
+  children,
+  className,
+  ...rest
+}: FadeInProps) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: !repeat ?? true });
 
@@ -27,8 +38,8 @@ export const FadeIn = ({ as = "div", repeat, startY, duration, delay, children, 
       ref={ref}
       initial={{ y: startY ?? 10, opacity: 0 }}
       animate={{
-        y: isInView ? 0 : startY ?? 10,
-        opacity: isInView ? 1 : 0,
+        y: isInView && (trigger ?? true) ? 0 : startY ?? 10,
+        opacity: isInView && (trigger ?? true) ? 1 : 0,
       }}
       transition={{ duration: duration ?? 0.3, delay: delay ?? 0, type: "spring", damping: 7, stiffness: 20 }}
       className={className}

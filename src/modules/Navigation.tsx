@@ -3,16 +3,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useScrollLock } from "@lib/useScrollLock";
+import { useScrollLock } from "@hooks/useScrollLock";
+import { email, navItems, phone, socials } from "@lib/constants";
+import { cn } from "@lib/utils";
+import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
 
-export function Navigation() {
+export type NavigationProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+  iconColor?: string;
+  navColor?: string;
+};
+
+export function Navigation({ iconColor }: NavigationProps) {
   const [open, setOpen] = useState<boolean>(false);
   const { lockScroll, unlockScroll } = useScrollLock();
 
-  const openClosedVariants = {
+  const mainVariants = {
     open: {
-      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -21,130 +28,133 @@ export function Navigation() {
       },
     },
     closed: {
-      opacity: 0,
       y: "-100%",
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 20,
+        stiffness: 60,
+        damping: 15,
+        delay: 0.5,
       },
     },
   };
 
-  const handleOpen = () => {
-    if (open) {
-      unlockScroll();
-    } else {
-      lockScroll();
-    }
+  const toggleOpen = () => {
+    if (open) unlockScroll();
+    else lockScroll();
     setOpen(!open);
   };
 
   return (
     <>
-      <nav className="hidden md:flex"></nav>
-      <div className="max-h-min md:hidden">
-        <button className="relative z-50" onClick={() => handleOpen()}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <motion.path
-              fill="#000000"
-              strokeWidth="3"
-              stroke="hsl(0, 0%, 18%)"
-              strokeLinecap="round"
-              variants={{
-                closed: { d: "M 2 2.5 L 20 2.5" },
-                open: { d: "M 3 16.5 L 17 2.5" },
-              }}
-            />
-            <motion.path
-              fill="#000000"
-              strokeWidth="3"
-              stroke="hsl(0, 0%, 18%)"
-              strokeLinecap="round"
-              variants={{
-                closed: { d: "M 2 16.346 L 20 16.346" },
-                open: { d: "M 3 2.5 L 17 16.346" },
-              }}
-            />
-          </svg>
-        </button>
+      {/* Desktop Navigation */}
+      <nav className="hidden w-full md:block">
+        <ol className="grid grid-cols-7 text-lg font-thin uppercase">
+          {navItems.map((item, i) => (
+            <motion.li
+              initial={{ y: 10 }}
+              animate={{ y: 0 }}
+              key={i}
+              className={cn(
+                i === 1 ? "col-start-3" : i === 2 ? "col-start-5" : i === 3 && "col-start-7 justify-self-end",
+              )}
+              transition={{ delay: i * 0.2 }}
+            >
+              <ActiveLink href={item.href} title={item.name} className="border-black">
+                {item.name}
+              </ActiveLink>
+            </motion.li>
+          ))}
+        </ol>
+      </nav>
 
-        <motion.div
+      {/* Mobile navigation */}
+      <button className="relative z-50 self-start outline-none md:hidden" aria-label="Navigation" onClick={toggleOpen}>
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <motion.path
+            initial={false}
+            animate={open ? "open" : "closed"}
+            strokeWidth="2"
+            strokeLinecap="round"
+            variants={{
+              closed: { d: "M 2 7 L 22 7", stroke: iconColor ?? "hsl(0, 0%, 0%)" },
+              open: { d: "M 5 19 L 19 5", stroke: "hsl(0, 0%, 100%)" },
+            }}
+          />
+          <motion.path
+            initial={false}
+            animate={open ? "open" : "closed"}
+            strokeWidth="2"
+            strokeLinecap="round"
+            variants={{
+              closed: { d: "M 2 14 L 22 14", stroke: iconColor ?? "hsl(0, 0%, 0%)" },
+              open: { d: "M 5 5 L 19 19", stroke: "hsl(0, 0%, 100%)" },
+            }}
+          />
+        </svg>
+      </button>
+      <motion.div
+        initial={false}
+        animate={open ? "open" : "closed"}
+        variants={mainVariants}
+        className="absolute left-0 top-0 z-40 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary md:hidden"
+      >
+        <figure className="text-xl uppercase">Léo Mercier</figure>
+
+        <motion.ul
           initial={false}
           animate={open ? "open" : "closed"}
-          variants={openClosedVariants}
-          className="absolute left-0 top-0 z-40 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black p-4 pb-8 text-primary"
+          className="col-span-2 flex flex-col self-center text-2xl font-thin uppercase"
         >
-          <figure className="text-xl uppercase">Léo Mercier</figure>
-
-          <ul className="col-span-2 flex flex-col self-center text-2xl font-thin uppercase">
+          {navItems.map((item, i) => (
             <motion.li
-              initial={{ opacity: 0 }}
-              animate={{ opacity: open ? 1 : 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative py-4 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-primary"
+              key={i}
+              initial={{ width: 0 }}
+              animate={{ width: open ? "100%" : 0 }}
+              transition={{ duration: 0.5, delay: open ? i * 0.2 : 0.3 - i * 0.1 }}
+              className={cn("py-4", i !== navItems.length - 1 && "border-x-0 border-b-[1px]")}
             >
-              <Link href="/" className="block w-full" title="About">
-                About
+              <Link href={item.href} className="block w-full outline-none" title={item.name}>
+                {item.name}
               </Link>
             </motion.li>
-            <li className="relative py-4 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-primary">
-              <Link href="/" className="block w-full" title="Work">
-                Work
-              </Link>
-            </li>
-            <li className="relative py-4 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-primary">
-              <Link href="/blog" className="block w-full" title="Blog">
-                Blog
-              </Link>
-            </li>
-            <li className="py-4">
-              <Link href="/contact" className="block w-full" title="Contact">
-                Contact
-              </Link>
-            </li>
-          </ul>
+          ))}
+        </motion.ul>
 
-          <aside className="flex flex-col">
-            <p className="mb-2 grow font-thin">Created with ❤️ in Tours</p>
-            <p className="mb-2 font-thin">leo.mercier@efrei.net</p>
-            <p className="font-thin">+33 7 68 89 79 69</p>
-          </aside>
-          <FadeIn
-            as="ul"
-            delay={0.2}
-            className="flex flex-col items-end gap-2 self-center justify-self-end text-sm md:col-start-8 md:row-start-2"
-          >
-            <li>
-              <Link
-                className="uppercase"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://www.linkedin.com/in/leomercier/"
-              >
-                LinkedIn
+        <FadeIn as="aside" trigger={open} className="flex flex-col">
+          <p className="mb-2 grow font-thin">Created with ❤️ in Tours</p>
+          <p className="mb-2 font-thin">{email}</p>
+          <p className="font-thin">{phone}</p>
+        </FadeIn>
+        <FadeIn
+          as="ul"
+          trigger={open}
+          className="flex flex-col items-end gap-2 self-center justify-self-end text-sm md:col-start-8 md:row-start-2"
+        >
+          {socials.map((item, i) => (
+            <li key={i} className="uppercase">
+              <Link rel="noopener noreferrer" target="_blank" href={item.href}>
+                {item.name}
               </Link>
             </li>
-            <li>
-              <Link className="uppercase" rel="noopener noreferrer" target="_blank" href="https://github.com/Sawangg">
-                Github
-              </Link>
-            </li>
-          </FadeIn>
+          ))}
+        </FadeIn>
 
-          <motion.hr
-            initial={{ width: 0 }}
-            animate={{ width: open ? "100%" : 0 }}
-            transition={{ duration: 0.5, delay: 0.3, repeatType: "reverse" }}
-            className="col-span-2"
-          />
+        <motion.hr
+          initial={{ width: 0 }}
+          animate={{ width: open ? "100%" : 0 }}
+          transition={{ duration: 0.5, delay: open ? 0.3 : 0, repeatType: "reverse" }}
+          className="col-span-2"
+        />
 
-          <ul className="col-span-2 flex justify-between">
-            <li>FR</li>
-            <li>EN</li>
-          </ul>
-        </motion.div>
-      </div>
+        <FadeIn as="ul" trigger={open} duration={0.1} className="col-span-2 flex justify-between">
+          <li>
+            <button>FR</button>
+          </li>
+          <li>
+            <button>EN</button>
+          </li>
+        </FadeIn>
+      </motion.div>
     </>
   );
 }

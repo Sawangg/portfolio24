@@ -1,4 +1,5 @@
-// import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
+
 // import { match } from "@formatjs/intl-localematcher";
 
 // const locales = ["en", "fr"];
@@ -14,7 +15,7 @@
 //   return match(languages, locales, defaultLocale);
 // };
 
-export function middleware(request: NextRequest) {
+export function middleware(_request: NextRequest) {
   // const pathname = request.nextUrl.pathname;
   // const pathnameIsMissingLocale = locales.every(
   //   (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,

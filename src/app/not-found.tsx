@@ -11,27 +11,24 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen border border-x-0 border-t-0 border-primary bg-black p-4 pb-24 text-primary lg:px-16 2xl:px-24">
-      <section>
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-col gap-2">
-            <Link href="/" className="text-xs">
-              Léo MERCIER
-            </Link>
-            <p className="text-[0.625rem] font-light uppercase">
-              Personal
-              <br />
-              portfolio (2024)
-            </p>
-          </div>
-
-          <Navigation />
+    <>
+      <header className="flex flex-row justify-between bg-black px-4 pt-6 text-primary lg:px-16 2xl:px-24">
+        <div className="mr-8 flex flex-col gap-2 md:mr-12 lg:mr-20 2xl:mr-24">
+          <Link href="/" className="text-xs">
+            Léo MERCIER
+          </Link>
+          <p className="text-[0.625rem] font-light uppercase">
+            Personal
+            <br />
+            portfolio (2024)
+          </p>
         </div>
-      </section>
+        <Navigation iconColor="hsl(0, 0%, 100%)" />
+      </header>
 
-      <section className="my-16 sm:my-32">
+      <main className="min-h-screen bg-black p-4 pb-24 pt-16 text-primary sm:py-32 lg:px-16 2xl:px-24">
         <div className="block lg:flex lg:flex-row lg:gap-28">
-          <FadeIn as="p" startY={50} delay={1} className="2x:mt-16 mb-2 font-thin lg:mb-0 lg:mt-4 lg:text-2xl xl:mt-8">
+          <FadeIn as="p" startY={20} delay={1} className="2x:mt-16 mb-2 font-thin lg:mb-0 lg:mt-4 lg:text-2xl xl:mt-8">
             404
           </FadeIn>
           <FadeIn
@@ -53,7 +50,7 @@ export default function NotFound() {
           <AnimatedArrow />
           <Link href="/">Back Home</Link>
         </FadeIn>
-      </section>
-    </main>
+      </main>
+    </>
   );
 }

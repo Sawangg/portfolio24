@@ -18,14 +18,14 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
-      "@type/*": ["./src/type/*"],
       "@actions/": ["./src/app/_actions/*"],
       "@db/*": ["./src/db/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "@lib/*": ["./src/lib/*"],
       "@modules/*": ["./src/modules/*"],
+      "@styles/*": ["./src/styles/*"],
       "@ui/*": ["./src/ui/*"],
-      "@public/*": ["./public/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@public/*": ["./public/*"]
     },
 
     // Language and Environment

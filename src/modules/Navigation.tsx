@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useScrollLock } from "@hooks/useScrollLock";
 import { email, navItems, phone, socials } from "@lib/constants";
@@ -44,6 +45,13 @@ export function Navigation({ iconColor }: NavigationProps) {
     setOpen(!open);
   };
 
+  // Unlock scroll on page change
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    unlockScroll();
+  }, [pathname, searchParams, unlockScroll]);
+
   return (
     <>
       {/* Desktop Navigation */}
@@ -71,7 +79,7 @@ export function Navigation({ iconColor }: NavigationProps) {
       <button className="relative z-50 self-start outline-none md:hidden" aria-label="Navigation" onClick={toggleOpen}>
         <svg width="24" height="24" viewBox="0 0 24 24">
           <motion.path
-            initial={false}
+            initial="closed"
             animate={open ? "open" : "closed"}
             strokeWidth="2"
             strokeLinecap="round"
@@ -79,9 +87,10 @@ export function Navigation({ iconColor }: NavigationProps) {
               closed: { d: "M 2 7 L 22 7", stroke: iconColor ?? "hsl(0, 0%, 0%)" },
               open: { d: "M 5 19 L 19 5", stroke: "hsl(0, 0%, 100%)" },
             }}
+            transition={{ stroke: { delay: open ? 0 : 1 } }}
           />
           <motion.path
-            initial={false}
+            initial="closed"
             animate={open ? "open" : "closed"}
             strokeWidth="2"
             strokeLinecap="round"
@@ -89,6 +98,7 @@ export function Navigation({ iconColor }: NavigationProps) {
               closed: { d: "M 2 14 L 22 14", stroke: iconColor ?? "hsl(0, 0%, 0%)" },
               open: { d: "M 5 5 L 19 19", stroke: "hsl(0, 0%, 100%)" },
             }}
+            transition={{ stroke: { delay: open ? 0 : 1 } }}
           />
         </svg>
       </button>
@@ -113,9 +123,11 @@ export function Navigation({ iconColor }: NavigationProps) {
               transition={{ duration: 0.5, delay: open ? i * 0.2 : 0.3 - i * 0.1 }}
               className={cn("py-4", i !== navItems.length - 1 && "border-x-0 border-b-[1px]")}
             >
-              <Link href={item.href} className="block w-full outline-none" title={item.name}>
-                {item.name}
-              </Link>
+              <FadeIn trigger={open}>
+                <Link href={item.href} className="block w-full outline-none" title={item.name}>
+                  {item.name}
+                </Link>
+              </FadeIn>
             </motion.li>
           ))}
         </motion.ul>

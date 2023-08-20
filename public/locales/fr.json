@@ -1,5 +1,26 @@
 {
-  "Index": {
-    "title": "Bonjour monde"
+  "Navigation": {
+    "items": [
+      { "name": "à propos", "href": "/" },
+      { "name": "Blog", "href": "/fr/blog" },
+      { "name": "Contact", "href": "/fr/contact" },
+      { "name": "Journal", "href": "/" }
+    ],
+    "random": "Créé avec ❤️ à Tours"
+  },
+  "Contact": {
+    "main": "Une idée de projet ou une offre d'emploi ? Parlons-en.",
+    "formTitle": "Contactez-moi ici 📬 Ce formulaire est disponible 24h/7j",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "company": "Entreprise",
+      "message": "Message",
+      "submit": "Envoyer",
+      "success": "Votre message a été envoyé"
+    }
+  },
+  "Footer": {
+    "random": ["Créé avec ❤️ à Tours", "Working remotely 💫 since the new normal", "Is it sunny ☀️ outside?"]
   }
 }

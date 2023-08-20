@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getDictionnary, type Locales } from "@lib/getDictionnary";
 import { Navigation } from "@modules/Navigation";
 import { AnimatedArrow } from "@modules/notfound/AnimatedArrow";
 import { RotatingCharacter } from "@modules/notfound/RotatingCharacter";
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
   title: "Léo MERCIER — Not Found",
 };
 
-export default function NotFound() {
+export default async function NotFound() {
+  const dictionnary = await getDictionnary("en" as Locales);
+
   return (
     <>
       <header className="flex flex-row justify-between bg-black px-4 pt-6 text-primary lg:px-16 2xl:px-24">
@@ -23,7 +26,7 @@ export default function NotFound() {
             portfolio (2024)
           </p>
         </div>
-        <Navigation iconColor="hsl(0, 0%, 100%)" />
+        <Navigation iconColor="hsl(0, 0%, 100%)" dictionnary={dictionnary} />
       </header>
 
       <main className="min-h-screen bg-black p-4 pb-24 pt-16 text-primary sm:py-32 lg:px-16 2xl:px-24">

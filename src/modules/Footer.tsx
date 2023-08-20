@@ -1,44 +1,42 @@
 import Link from "next/link";
-import { navItems, phone, socials } from "@lib/constants";
+import { phone, socials } from "@lib/constants";
+import { getDictionnary, type Locales } from "@lib/getDictionnary";
+import { MailTo } from "@modules/contact/MailTo";
 import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
-import { MailTo } from "./contact/MailTo";
+import { LanguageSwitcher } from "@ui/LanguageSwitcher";
 
-export default function Footer() {
-  const randomSentences = [
-    "Created with ❤️ in Tours",
-    "Working remotely 💫 since the new normal",
-    "Is it sunny ☀️ outside?",
-  ];
-  const randomIndex = Math.floor(Math.random() * randomSentences.length);
+export default async function Footer({ lang }: { lang: string }) {
+  const dictionnary = await getDictionnary(lang as Locales);
+  const randomIndex = Math.floor(Math.random() * dictionnary.Footer.random.length);
 
   return (
     <footer className="grid grid-cols-2 grid-rows-3 overflow-hidden bg-black px-4 py-10 text-primary md:grid-cols-8 md:grid-rows-2 md:gap-y-32 md:pb-14 lg:px-16 2xl:px-24">
       <FadeIn as="ol" className="col-span-8 hidden uppercase md:grid">
         <li className="col-start-1 3xl:text-lg">
-          <ActiveLink href={navItems[0].href}>{navItems[0].name}</ActiveLink>
+          <ActiveLink href={dictionnary.Navigation.items[0].href}>{dictionnary.Navigation.items[0].name}</ActiveLink>
         </li>
         <li className="col-start-3 3xl:text-lg">
-          <ActiveLink href={navItems[1].href}>{navItems[1].name}</ActiveLink>
+          <ActiveLink href={dictionnary.Navigation.items[1].href}>{dictionnary.Navigation.items[1].name}</ActiveLink>
         </li>
         <li className="col-start-6 3xl:text-lg">
-          <ActiveLink href={navItems[2].href}>{navItems[2].name}</ActiveLink>
+          <ActiveLink href={dictionnary.Navigation.items[2].href}>{dictionnary.Navigation.items[2].name}</ActiveLink>
         </li>
         <li className="col-start-8 justify-self-end 3xl:text-lg">
-          <ActiveLink href={navItems[3].href}>{navItems[3].name}</ActiveLink>
+          <ActiveLink href={dictionnary.Navigation.items[3].href}>{dictionnary.Navigation.items[3].name}</ActiveLink>
         </li>
       </FadeIn>
 
       <FadeIn
         as="ul"
         delay={0.2}
-        className="col-span-2 flex flex-row justify-between uppercase md:col-span-1 md:col-start-5 md:row-start-2 md:grid md:justify-self-center 3xl:col-start-6"
+        className="col-span-2 flex flex-row justify-between md:col-span-1 md:col-start-5 md:row-start-2 md:grid md:justify-self-center 3xl:col-start-6"
       >
         <li>
-          <Link href="/fr">FR</Link>
+          <LanguageSwitcher lang="fr" className="uppercase" />
         </li>
         <li className="justify-self-end md:self-end">
-          <Link href="/en">EN</Link>
+          <LanguageSwitcher lang="en" className="uppercase" />
         </li>
       </FadeIn>
 
@@ -54,7 +52,7 @@ export default function Footer() {
 
       <aside className="flex flex-col gap-4 self-end text-sm md:col-span-2 md:col-start-6 md:row-start-2 md:self-start 3xl:col-span-1">
         <FadeIn as="p" delay={0.2}>
-          {randomSentences[randomIndex]}
+          {dictionnary.Footer.random[randomIndex]}
         </FadeIn>
 
         <FadeIn delay={0.2} className="font-light">

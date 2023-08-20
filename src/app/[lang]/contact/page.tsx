@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import Link from "next/link";
+import { getDictionnary, type Locales } from "@lib/getDictionnary";
 import { ContactForm } from "@modules/contact/ContactForm";
 import { MailTo } from "@modules/contact/MailTo";
 import { Navigation } from "@modules/Navigation";
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
   title: "Léo MERCIER — Contact",
 };
 
-export default function Contact() {
+export default async function Contact({ params }: { params: { lang: string } }) {
+  const dictionnary = await getDictionnary(params.lang as Locales);
+
   return (
     <>
       <header className="flex flex-row justify-between bg-lime-200 px-4 pt-6 lg:px-16 2xl:px-24">
@@ -23,7 +26,7 @@ export default function Contact() {
             portfolio (2024)
           </p>
         </FadeIn>
-        <Navigation />
+        <Navigation dictionnary={dictionnary} />
       </header>
 
       <main className="min-h-screen bg-lime-200 p-4 pb-24 md:flex md:flex-col md:py-24 lg:px-16 2xl:px-24" role="main">
@@ -51,7 +54,7 @@ export default function Contact() {
             delay={1}
             className="my-6 text-2xl uppercase md:my-0 md:mt-auto md:w-1/2 md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
           >
-            Got a project idea or a job offer? Let&apos;s talk.
+            {dictionnary.Contact.main}
           </FadeIn>
         </FadeIn>
 
@@ -61,10 +64,10 @@ export default function Contact() {
           delay={1}
           className="my-6 text-lg font-thin md:mt-24 xl:text-3xl 2xl:mt-24 3xl:mt-28"
         >
-          Get in touch here 📬 This form is open 24/7
+          {dictionnary.Contact.formTitle}
         </FadeIn>
 
-        <ContactForm />
+        <ContactForm dictionnary={dictionnary} />
 
         {/* TODO: socials */}
       </main>

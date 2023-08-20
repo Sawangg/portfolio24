@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   description: "Léo MERCIER's 2024 portfolio",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
   return (
-    <html lang="en">
+    <html lang={params.lang}>
       <body className={`bg-primary text-[color:var(--text)] ${poppins.className}`}>
         {children}
-        <Footer />
+        <Footer lang={params.lang} />
       </body>
     </html>
   );

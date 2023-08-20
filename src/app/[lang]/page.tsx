@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getDictionnary, type Locales } from "@lib/getDictionnary";
 import { AnimatedTextCharacter } from "@modules/landing/AnimatedTextCharacter";
 import { Scene } from "@modules/landing/Scene";
 import { Navigation } from "@modules/Navigation";
 import { AspectRatio } from "@ui/AspectRatio";
 import { FadeIn } from "@ui/FadeIn";
 
-export default function Home() {
+export default async function Home({ params }: { params: { lang: string } }) {
+  const dictionnary = await getDictionnary(params.lang as Locales);
+
   return (
     <>
       <header className="flex flex-row justify-between px-4 pt-6 lg:px-16 2xl:px-24">
@@ -18,7 +21,7 @@ export default function Home() {
             portfolio (2024)
           </p>
         </div>
-        <Navigation />
+        <Navigation dictionnary={dictionnary} />
       </header>
 
       <main className="min-h-screen p-4 pb-24 md:flex md:flex-col md:py-24 lg:px-16 2xl:px-24">
@@ -60,8 +63,8 @@ export default function Home() {
 
         {/* Projets */}
         <section className="flex flex-col" id="work">
-          <div className="w-96 overflow-hidden">
-            <AspectRatio ratio={16 / 9}>
+          <div className="relative overflow-hidden">
+            <AspectRatio ratio={2 / 3}>
               <Image src="https://placehold.co/400x600" alt="" fill />
             </AspectRatio>
           </div>

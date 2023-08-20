@@ -2,20 +2,23 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useScrollLock } from "@hooks/useScrollLock";
-import { email, navItems, phone, socials } from "@lib/constants";
+import { email, phone, socials } from "@lib/constants";
+import { type Dictionnary } from "@lib/getDictionnary";
 import { cn } from "@lib/utils";
 import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
+import { LanguageSwitcher } from "@ui/LanguageSwitcher";
 
 export type NavigationProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+  dictionnary: Dictionnary;
   iconColor?: string;
   navColor?: string;
 };
 
-export function Navigation({ iconColor }: NavigationProps) {
+export function Navigation({ dictionnary, iconColor }: NavigationProps) {
   const [open, setOpen] = useState<boolean>(false);
   const { lockScroll, unlockScroll } = useScrollLock();
 
@@ -47,17 +50,16 @@ export function Navigation({ iconColor }: NavigationProps) {
 
   // Unlock scroll on page change
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   useEffect(() => {
     unlockScroll();
-  }, [pathname, searchParams, unlockScroll]);
+  }, [pathname, unlockScroll]);
 
   return (
     <>
       {/* Desktop Navigation */}
       <nav className="hidden w-full md:block">
         <ol className="grid grid-cols-7 text-lg font-thin uppercase">
-          {navItems.map((item, i) => (
+          {dictionnary.Navigation.items.map((item, i) => (
             <motion.li
               initial={{ y: 10 }}
               animate={{ y: 0 }}
@@ -115,13 +117,13 @@ export function Navigation({ iconColor }: NavigationProps) {
           animate={open ? "open" : "closed"}
           className="col-span-2 flex flex-col self-center text-2xl font-thin uppercase"
         >
-          {navItems.map((item, i) => (
+          {dictionnary.Navigation.items.map((item, i) => (
             <motion.li
               key={i}
               initial={{ width: 0 }}
               animate={{ width: open ? "100%" : 0 }}
               transition={{ duration: 0.5, delay: open ? i * 0.2 : 0.3 - i * 0.1 }}
-              className={cn("py-4", i !== navItems.length - 1 && "border-x-0 border-b-[1px]")}
+              className={cn("py-4", i !== dictionnary.Navigation.items.length - 1 && "border-x-0 border-b-[1px]")}
             >
               <FadeIn trigger={open}>
                 <Link href={item.href} className="block w-full outline-none" title={item.name}>
@@ -133,7 +135,7 @@ export function Navigation({ iconColor }: NavigationProps) {
         </motion.ul>
 
         <FadeIn as="aside" trigger={open} className="flex flex-col">
-          <p className="mb-2 grow font-thin">Created with ❤️ in Tours</p>
+          <p className="mb-2 grow font-thin">{dictionnary.Navigation.random}</p>
           <p className="mb-2 font-thin">{email}</p>
           <p className="font-thin">{phone}</p>
         </FadeIn>
@@ -160,10 +162,10 @@ export function Navigation({ iconColor }: NavigationProps) {
 
         <FadeIn as="ul" trigger={open} duration={0.1} className="col-span-2 flex justify-between">
           <li>
-            <button>FR</button>
+            <LanguageSwitcher lang="fr" className="uppercase disabled:text-zinc-800" disable />
           </li>
           <li>
-            <button>EN</button>
+            <LanguageSwitcher lang="en" className="uppercase disabled:text-zinc-800" disable />
           </li>
         </FadeIn>
       </motion.div>

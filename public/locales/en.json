@@ -1,10 +1,11 @@
 {
   "Navigation": {
+    "title": "",
     "items": [
       { "name": "About", "href": "/" },
       { "name": "Blog", "href": "/en/blog" },
       { "name": "Contact", "href": "/en/contact" },
-      { "name": "Work", "href": "/" }
+      { "name": "Work", "href": "/en/work" }
     ],
     "random": "Created with ❤️ in Tours"
   },

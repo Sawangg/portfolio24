@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export const AnimatedTextCharacter = ({ text }: { text: string }) => {
+export type AnimatedTextCharacterProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+  text: string;
+};
+
+export const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({ text }) => {
   const letters = Array.from(text);
 
   const container = {

@@ -4,6 +4,7 @@ import { env } from "./src/env.mjs";
 const nextConfig = {
   experimental: {
     serverActions: true,
+    typedRoutes: true,
   },
   images: {
     dangerouslyAllowSVG: env.NODE_ENV !== "production" ? true : false,

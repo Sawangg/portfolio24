@@ -36,6 +36,7 @@ export const Input: React.FC<InputProps> = ({ placeholder, label, delay, classNa
             duration: 0.4,
             delay: delay ?? 0,
           }}
+          className="min-w-[10px]"
         >
           {label}
         </motion.label>

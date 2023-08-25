@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { AspectRatio } from "@ui/AspectRatio";
 
-export function AnimatedArrow() {
+export const AnimatedArrow: React.FC = () => {
   return (
     <motion.div
       initial={{ x: "-10%" }}
@@ -12,14 +10,14 @@ export function AnimatedArrow() {
       transition={{
         repeat: Infinity,
         repeatType: "reverse",
-        duration: 2,
+        duration: 1,
         ease: "linear",
       }}
-      className="relative h-6 w-6 md:h-10 md:w-10"
+      className="relative w-6 md:w-10"
     >
-      <AspectRatio ratio={1 / 1}>
-        <Image src="/assets/arrow.svg" alt="" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill />
-      </AspectRatio>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" className="text-primary">
+        <path d="M9 3L8.285 3.6965L12.075 7.5H2V8.5H12.075L8.285 12.2865L9 13L14 8L9 3Z" fill="currentColor" />
+      </svg>
     </motion.div>
   );
-}
+};

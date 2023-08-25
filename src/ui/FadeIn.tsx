@@ -16,7 +16,7 @@ export type FadeInProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLEleme
   children: React.ReactNode;
 } & MotionComponentProps;
 
-export const FadeIn = ({
+export const FadeIn: React.FC<FadeInProps> = ({
   as = "div",
   repeat,
   startY,
@@ -26,7 +26,7 @@ export const FadeIn = ({
   children,
   className,
   ...rest
-}: FadeInProps) => {
+}) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: !repeat ?? true });
 

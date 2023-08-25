@@ -13,7 +13,7 @@ export type ActiveLinkProps = React.DetailedHTMLProps<
   href: string;
 };
 
-export const ActiveLink = ({ href, children, className }: ActiveLinkProps) => {
+export const ActiveLink: React.FC<ActiveLinkProps> = ({ href, children, className }) => {
   const pathname = usePathname();
   const [isHovered, setIsHovered] = useState(false);
 

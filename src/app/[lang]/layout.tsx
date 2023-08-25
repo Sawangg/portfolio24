@@ -1,7 +1,7 @@
 import "@styles/globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import Footer from "@modules/Footer";
+import { Footer } from "@modules/Footer";
 
 const poppins = Poppins({ weight: ["300", "500"], subsets: ["latin"], display: "swap" });
 
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
   return (
-    <html lang={params.lang}>
-      <body className={`bg-primary text-[color:var(--text)] ${poppins.className}`}>
+    <html lang={params.lang} className="overflow-x-hidden">
+      <body className={`overflow-x-hidden bg-primary text-[color:var(--text)] ${poppins.className}`}>
         {children}
         <Footer lang={params.lang} />
       </body>

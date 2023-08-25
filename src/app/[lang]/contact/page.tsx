@@ -16,8 +16,8 @@ export default async function Contact({ params }: { params: { lang: string } }) 
   return (
     <>
       <header className="flex flex-row justify-between bg-lime-200 px-4 pt-6 lg:px-16 2xl:px-24">
-        <FadeIn startY={0} delay={0.5} className="mr-8 flex flex-col gap-2 md:mr-12 lg:mr-20 2xl:mr-24">
-          <Link href="/" className="text-xs">
+        <FadeIn startY={0} delay={0.5} className="mr-8 flex flex-col gap-2 lg:mr-20 2xl:mr-24">
+          <Link href="/" className="whitespace-nowrap text-xs">
             Léo MERCIER
           </Link>
           <p className="text-[0.625rem] font-light uppercase">

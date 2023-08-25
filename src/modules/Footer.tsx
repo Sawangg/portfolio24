@@ -6,7 +6,11 @@ import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
 import { LanguageSwitcher } from "@ui/LanguageSwitcher";
 
-export default async function Footer({ lang }: { lang: string }) {
+export type FooterProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+  lang: string;
+};
+
+export const Footer: React.FC<FooterProps> = async ({ lang }) => {
   const dictionnary = await getDictionnary(lang as Locales);
   const randomIndex = Math.floor(Math.random() * dictionnary.Footer.random.length);
 
@@ -76,4 +80,4 @@ export default async function Footer({ lang }: { lang: string }) {
       </FadeIn>
     </footer>
   );
-}
+};

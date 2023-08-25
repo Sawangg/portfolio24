@@ -1,10 +1,11 @@
 {
   "Navigation": {
+    "title": "",
     "items": [
       { "name": "à propos", "href": "/" },
       { "name": "Blog", "href": "/fr/blog" },
       { "name": "Contact", "href": "/fr/contact" },
-      { "name": "Journal", "href": "/" }
+      { "name": "Journal", "href": "/fr/work" }
     ],
     "random": "Créé avec ❤️ à Tours"
   },
@@ -21,6 +22,6 @@
     }
   },
   "Footer": {
-    "random": ["Créé avec ❤️ à Tours", "Working remotely 💫 since the new normal", "Is it sunny ☀️ outside?"]
+    "random": ["Créé avec ❤️ à Tours", "Travaille à distance 💫 depuis la nouvelle norme", "Fait-il beau ☀️ dehors ?"]
   }
 }

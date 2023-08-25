@@ -18,7 +18,7 @@ export type NavigationProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLD
   navColor?: string;
 };
 
-export function Navigation({ dictionnary, iconColor }: NavigationProps) {
+export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { lockScroll, unlockScroll } = useScrollLock();
 
@@ -79,7 +79,7 @@ export function Navigation({ dictionnary, iconColor }: NavigationProps) {
 
       {/* Mobile navigation */}
       <button className="relative z-50 self-start outline-none md:hidden" aria-label="Navigation" onClick={toggleOpen}>
-        <svg width="24" height="24" viewBox="0 0 24 24">
+        <svg width="24px" height="24px" viewBox="0 0 24 24">
           <motion.path
             initial="closed"
             animate={open ? "open" : "closed"}
@@ -171,4 +171,4 @@ export function Navigation({ dictionnary, iconColor }: NavigationProps) {
       </motion.div>
     </>
   );
-}
+};

@@ -14,7 +14,7 @@ export type ContactFormProps = React.DetailedHTMLProps<React.HTMLAttributes<HTML
   dictionnary: Dictionnary;
 };
 
-export const ContactForm = ({ dictionnary }: ContactFormProps) => {
+export const ContactForm: React.FC<ContactFormProps> = ({ dictionnary }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [validationError, setValidationError] = useState<ZodFormattedError<SendMessage> | null>(null);
   const [validationSuccess, setValidationSuccess] = useState<boolean>(false);
@@ -82,7 +82,7 @@ export const ContactForm = ({ dictionnary }: ContactFormProps) => {
         <p className="text-xs uppercase text-red-400 lg:text-sm">{validationError.message._errors[0]}</p>
       )}
       {validationSuccess && <p className="text-xs uppercase text-green-400">{dictionnary.Contact.form.success}</p>}
-      <FadeIn delay={1.4} className="flex flex-row items-center">
+      <FadeIn delay={1.4} startY={0} className="flex flex-row items-center">
         <label htmlFor="submit">5</label>
         <input
           id="submit"
@@ -92,7 +92,7 @@ export const ContactForm = ({ dictionnary }: ContactFormProps) => {
         />
         <div className="relative ml-2 w-4">
           <AspectRatio ratio={1 / 1}>
-            <Image src="/assets/arrow.svg" alt="" sizes="16px" role="img" fill />
+            <Image src="/assets/arrow.svg" alt="" sizes="16px" aria-hidden fill />
           </AspectRatio>
         </div>
       </FadeIn>

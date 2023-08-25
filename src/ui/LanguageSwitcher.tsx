@@ -11,7 +11,7 @@ export type LanguageSwitcherProps = React.DetailedHTMLProps<
   disable?: boolean;
 };
 
-export const LanguageSwitcher = ({ lang, disable, className }: LanguageSwitcherProps) => {
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ lang, disable, className }) => {
   const router = useRouter();
   const pathname = usePathname();
 

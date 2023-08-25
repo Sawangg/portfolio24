@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export function RotatingCharacter({ char }: { char: string }) {
+export type RotatingCharacterProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> & {
+  char: string;
+};
+
+export const RotatingCharacter: React.FC<RotatingCharacterProps> = ({ char }) => {
   return (
     <motion.span
       initial={{ rotate: 0, x: 0 }}
@@ -13,4 +17,4 @@ export function RotatingCharacter({ char }: { char: string }) {
       {char}
     </motion.span>
   );
-}
+};

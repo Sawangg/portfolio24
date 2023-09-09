@@ -51,6 +51,7 @@ module.exports = {
     "@typescript-eslint/no-import-type-side-effects": "error",
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-misused-promises": "off", // Not working with server actions
     "prettier/prettier": [
       "warn",
       {

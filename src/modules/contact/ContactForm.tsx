@@ -19,8 +19,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ dictionnary }) => {
   const [validationError, setValidationError] = useState<ZodFormattedError<SendMessage> | null>(null);
   const [validationSuccess, setValidationSuccess] = useState<boolean>(false);
 
-  function sendMessageAction(data: FormData) {
-    const result = sendMessage(data);
+  async function sendMessageAction(data: FormData) {
+    const result = await sendMessage(data);
     if (result?.error) {
       setValidationError(result.error);
       setValidationSuccess(false);

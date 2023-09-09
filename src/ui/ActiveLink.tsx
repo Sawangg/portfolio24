@@ -19,7 +19,7 @@ export const ActiveLink: React.FC<ActiveLinkProps> = ({ href, children, classNam
 
   return (
     <div
-      className="relative max-w-fit"
+      className="relative max-w-fit cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -30,7 +30,7 @@ export const ActiveLink: React.FC<ActiveLinkProps> = ({ href, children, classNam
         transition={{
           duration: 0.3,
         }}
-        className={cn("mt-4 h-[1px]", className)}
+        className={cn("mt-4", className)}
       />
     </div>
   );

@@ -15,10 +15,10 @@ import { LanguageSwitcher } from "@ui/LanguageSwitcher";
 export type NavigationProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   dictionnary: Dictionnary;
   iconColor?: string;
-  navColor?: string;
+  borderColor?: string;
 };
 
-export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, navColor }) => {
+export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, borderColor }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { lockScroll, unlockScroll } = useScrollLock();
 
@@ -64,18 +64,12 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
               initial={{ y: 10 }}
               animate={{ y: 0 }}
               key={i}
-              // TODO: cursor-pointer
               className={cn(
                 i === 1 ? "col-start-3" : i === 2 ? "col-start-5" : i === 3 && "col-start-7 justify-self-end",
               )}
               transition={{ delay: i * 0.2 }}
             >
-              <ActiveLink
-                href={item.href}
-                title={item.name}
-                className="cursor-pointer"
-                style={{ borderColor: navColor ?? "red" }}
-              >
+              <ActiveLink href={item.href} title={item.name} className={cn(borderColor ?? "border-black")}>
                 {item.name}
               </ActiveLink>
             </motion.li>

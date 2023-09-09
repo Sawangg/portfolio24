@@ -14,7 +14,7 @@ export default async function Blog({ params }: { params: { lang: string } }) {
             Léo MERCIER
           </Link>
         </FadeIn>
-        <Navigation dictionnary={dictionnary} iconColor="hsl(0, 0%, 100%)" />
+        <Navigation dictionnary={dictionnary} iconColor="hsl(0, 0%, 100%)" borderColor="border-white" />
       </header>
       <main className="flex min-h-screen items-center justify-center bg-black p-4 text-primary">
         <h1 className="text-2xl 2xl:text-6xl">Coming soon</h1>

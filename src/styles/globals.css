@@ -7,7 +7,3 @@
   --secondary: #3f5d4e;
   --text: #000000;
 }
-
-html {
-  scroll-behavior: smooth;
-}

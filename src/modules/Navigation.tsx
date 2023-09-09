@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -20,6 +20,7 @@ export type NavigationProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLD
 
 export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, borderColor }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const mobileContainerRef = useRef<HTMLDivElement | null>(null);
   const { lockScroll, unlockScroll } = useScrollLock();
 
   const mainVariants = {
@@ -27,8 +28,8 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
       y: 0,
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 20,
+        stiffness: 60,
+        damping: 15,
       },
     },
     closed: {
@@ -48,10 +49,16 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
     setOpen(!open);
   };
 
-  // Unlock scroll on page change
+  // Unlock scroll on page change & set container height
   const pathname = usePathname();
   useEffect(() => {
     unlockScroll();
+    if (mobileContainerRef.current) {
+      const viewportHeight = window.innerHeight;
+      mobileContainerRef.current.style.minHeight = `calc(${viewportHeight}px - ${
+        window.visualViewport ? window.visualViewport.height - viewportHeight : 0
+      }px + 1px)`;
+    }
   }, [pathname, unlockScroll]);
 
   return (
@@ -105,9 +112,11 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         </svg>
       </button>
       <motion.div
+        ref={mobileContainerRef}
         initial={false}
         animate={open ? "open" : "closed"}
         variants={mainVariants}
+        aria-hidden
         className="absolute left-0 top-0 z-40 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary md:hidden"
       >
         <figure className="text-xl uppercase">Léo Mercier</figure>

@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 
 export const useScrollLock = () => {
   const lockScroll = useCallback(() => {
-    document.body.style.position = "fixed";
+    document.body.style.position = "fixed"; // iOS
     document.body.style.overflow = "hidden";
   }, []);
 
@@ -11,9 +11,9 @@ export const useScrollLock = () => {
     document.body.style.overflow = "";
   }, []);
 
-  const preventTabScroll = useCallback((event: KeyboardEvent) => {
-    if (document.body.style.overflow === "hidden" && event.key === "Tab") {
-      event.preventDefault();
+  const preventTabScroll = useCallback((e: KeyboardEvent) => {
+    if (document.body.style.overflow === "hidden" && e.key === "Tab") {
+      e.preventDefault();
     }
   }, []);
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
@@ -7,6 +8,13 @@ import { Scene } from "@modules/landing/Scene";
 import { Navigation } from "@modules/Navigation";
 import { AspectRatio } from "@ui/AspectRatio";
 import { FadeIn } from "@ui/FadeIn";
+
+export const metadata: Metadata = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
+};
 
 export default async function Home({ params }: { params: { lang: string } }) {
   const dictionnary = await getDictionnary(params.lang as Locale);

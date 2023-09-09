@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { Navigation } from "@modules/Navigation";
 import { FadeIn } from "@ui/FadeIn";
+
+export const metadata: Metadata = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#000000" },
+  ],
+};
 
 export default async function Blog({ params }: { params: { lang: string } }) {
   const dictionnary = await getDictionnary(params.lang as Locale);

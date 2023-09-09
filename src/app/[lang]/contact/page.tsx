@@ -8,6 +8,10 @@ import { FadeIn } from "@ui/FadeIn";
 
 export const metadata: Metadata = {
   title: "Léo MERCIER — Contact",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
 };
 
 export default async function Contact({ params }: { params: { lang: string } }) {

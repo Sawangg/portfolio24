@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getDictionnary, type Locales } from "@lib/getDictionnary";
+import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { Navigation } from "@modules/Navigation";
 import { AnimatedArrow } from "@modules/notfound/AnimatedArrow";
 import { RotatingCharacter } from "@modules/notfound/RotatingCharacter";
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NotFound() {
-  const dictionnary = await getDictionnary("en" as Locales);
+  const dictionnary = await getDictionnary("en" as Locale);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { phone, socials } from "@lib/constants";
-import { getDictionnary, type Locales } from "@lib/getDictionnary";
+import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { MailTo } from "@modules/contact/MailTo";
 import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
@@ -11,7 +11,7 @@ export type FooterProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLEleme
 };
 
 export const Footer: React.FC<FooterProps> = async ({ lang }) => {
-  const dictionnary = await getDictionnary(lang as Locales);
+  const dictionnary = await getDictionnary(lang as Locale);
   const randomIndex = Math.floor(Math.random() * dictionnary.Footer.random.length);
 
   return (

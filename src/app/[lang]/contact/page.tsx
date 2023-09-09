@@ -1,6 +1,6 @@
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getDictionnary, type Locales } from "@lib/getDictionnary";
+import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { ContactForm } from "@modules/contact/ContactForm";
 import { MailTo } from "@modules/contact/MailTo";
 import { Navigation } from "@modules/Navigation";
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Contact({ params }: { params: { lang: string } }) {
-  const dictionnary = await getDictionnary(params.lang as Locales);
+  const dictionnary = await getDictionnary(params.lang as Locale);
 
   return (
     <>

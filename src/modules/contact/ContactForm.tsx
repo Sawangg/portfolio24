@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { type ZodFormattedError } from "zod";
-import { type Dictionnary } from "@lib/getDictionnary";
+import type { ZodFormattedError } from "zod";
+import type { Dictionnary } from "@lib/getDictionnary";
 import { AspectRatio } from "@ui/AspectRatio";
 import { FadeIn } from "@ui/FadeIn";
 import { Input } from "@ui/Input";
@@ -19,8 +19,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ dictionnary }) => {
   const [validationError, setValidationError] = useState<ZodFormattedError<SendMessage> | null>(null);
   const [validationSuccess, setValidationSuccess] = useState<boolean>(false);
 
-  async function sendMessageAction(data: FormData) {
-    const result = await sendMessage(data);
+  function sendMessageAction(data: FormData) {
+    const result = sendMessage(data);
     if (result?.error) {
       setValidationError(result.error);
       setValidationSuccess(false);

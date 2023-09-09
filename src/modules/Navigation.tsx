@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useScrollLock } from "@hooks/useScrollLock";
 import { email, phone, socials } from "@lib/constants";
-import { type Dictionnary } from "@lib/getDictionnary";
+import type { Dictionnary } from "@lib/getDictionnary";
 import { cn } from "@lib/utils";
 import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
@@ -18,7 +18,7 @@ export type NavigationProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLD
   navColor?: string;
 };
 
-export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor }) => {
+export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, navColor }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { lockScroll, unlockScroll } = useScrollLock();
 
@@ -64,12 +64,18 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor }
               initial={{ y: 10 }}
               animate={{ y: 0 }}
               key={i}
+              // TODO: cursor-pointer
               className={cn(
                 i === 1 ? "col-start-3" : i === 2 ? "col-start-5" : i === 3 && "col-start-7 justify-self-end",
               )}
               transition={{ delay: i * 0.2 }}
             >
-              <ActiveLink href={item.href} title={item.name} className="border-black">
+              <ActiveLink
+                href={item.href}
+                title={item.name}
+                className="cursor-pointer"
+                style={{ borderColor: navColor ?? "red" }}
+              >
                 {item.name}
               </ActiveLink>
             </motion.li>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getDictionnary, type Locales } from "@lib/getDictionnary";
+import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { AnimatedTextCharacter } from "@modules/landing/AnimatedTextCharacter";
 import { BackToTop } from "@modules/landing/BackToTop";
 import { Scene } from "@modules/landing/Scene";
@@ -9,7 +9,7 @@ import { AspectRatio } from "@ui/AspectRatio";
 import { FadeIn } from "@ui/FadeIn";
 
 export default async function Home({ params }: { params: { lang: string } }) {
-  const dictionnary = await getDictionnary(params.lang as Locales);
+  const dictionnary = await getDictionnary(params.lang as Locale);
 
   return (
     <>

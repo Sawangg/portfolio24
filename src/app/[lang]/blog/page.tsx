@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { getDictionnary, type Locales } from "@lib/getDictionnary";
+import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { Navigation } from "@modules/Navigation";
 import { FadeIn } from "@ui/FadeIn";
 
 export default async function Blog({ params }: { params: { lang: string } }) {
-  const dictionnary = await getDictionnary(params.lang as Locales);
+  const dictionnary = await getDictionnary(params.lang as Locale);
 
   return (
     <>

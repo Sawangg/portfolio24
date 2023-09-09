@@ -1,5 +1,5 @@
 /** @type {import("eslint").Linter.Config} */
-const config = {
+module.exports = {
   root: true,
   env: {
     browser: true,
@@ -8,6 +8,7 @@ const config = {
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {
+    project: true,
     ecmaFeatures: {
       jsx: true,
     },
@@ -31,7 +32,8 @@ const config = {
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended",
@@ -46,6 +48,8 @@ const config = {
         fixStyle: "inline-type-imports",
       },
     ],
+    "@typescript-eslint/no-import-type-side-effects": "error",
+    "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "prettier/prettier": [
       "warn",
@@ -58,5 +62,3 @@ const config = {
     ],
   },
 };
-
-module.exports = config;

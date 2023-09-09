@@ -11,7 +11,7 @@ const SentMessage = z.object({
 });
 export type SendMessage = z.infer<typeof SentMessage>;
 
-export const sendMessage = async (data: FormData) => {
+export const sendMessage = (data: FormData) => {
   const { name, email, company, message } = Object.fromEntries(data);
   const result = SentMessage.safeParse({ name, email, company, message });
   if (!result.success) return { error: result.error.format() };

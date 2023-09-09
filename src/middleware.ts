@@ -1,10 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
+import { defaultLocale, locales } from "@lib/constants";
 
-const locales = ["en", "fr"];
-const defaultLocale = "en";
-
-const getLocale = (request: NextRequest) => {
+const getRequestLocale = (request: NextRequest) => {
   const languages = request.headers
     .get("accept-language")!
     .split(",")
@@ -14,17 +12,18 @@ const getLocale = (request: NextRequest) => {
   return match(languages, locales, defaultLocale);
 };
 
-export function middleware(request: NextRequest) {
+export function middleware(request: NextRequest): NextResponse {
   const pathname = request.nextUrl.pathname;
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   );
 
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
+    const locale = getRequestLocale(request);
     return NextResponse.redirect(new URL(`/${locale}/${pathname}`, request.url));
   }
-  return;
+
+  return NextResponse.next();
 }
 
 export const config = {

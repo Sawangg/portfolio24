@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = async ({ lang }) => {
   const randomIndex = Math.floor(Math.random() * dictionnary.Footer.random.length);
 
   return (
-    <footer className="grid grid-cols-2 grid-rows-3 overflow-hidden bg-black px-4 py-10 text-primary after:fixed after:bottom-0 after:left-0 after:-z-50 after:h-screen after:w-screen after:bg-black md:grid-cols-8 md:grid-rows-2 md:gap-y-32 md:pb-14 lg:px-16 2xl:px-24">
+    <footer className="grid grid-cols-2 grid-rows-3 overflow-hidden bg-black px-4 py-10 text-primary after:fixed after:bottom-0 after:left-0 after:-z-40 after:h-screen after:w-screen after:bg-black md:grid-cols-8 md:grid-rows-2 md:gap-y-32 md:pb-14 lg:px-16 2xl:px-24">
       <FadeIn as="ol" className="col-span-8 hidden uppercase md:grid">
         <li className="col-start-1 3xl:text-lg">
           <ActiveLink href={dictionnary.Navigation.items[0].href}>{dictionnary.Navigation.items[0].name}</ActiveLink>

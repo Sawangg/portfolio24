@@ -21,7 +21,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
 
   return (
     <>
-      <header className="flex flex-row justify-between px-4 pt-6 lg:px-16 2xl:px-24">
+      <header className="flex flex-row justify-between bg-primary px-4 pt-6 lg:px-16 2xl:px-24">
         <div className="mr-8 flex flex-col gap-2 lg:mr-20 2xl:mr-24">
           <p className="whitespace-nowrap text-xs">Léo MERCIER</p>
           <p className="text-[0.625rem] font-light uppercase">
@@ -33,7 +33,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
         <Navigation dictionnary={dictionnary} />
       </header>
 
-      <main className="min-h-screen p-4 pb-24 md:flex md:flex-col md:py-24 lg:px-16 2xl:px-24" role="main">
+      <main className="min-h-screen bg-primary p-4 pb-24 md:flex md:flex-col md:py-24 lg:px-16 2xl:px-24" role="main">
         <section className="min-h-screen">
           <div className="mt-16 flex flex-col items-center justify-center">
             <p className="mb-2 text-xl tracking-wide 2xl:mb-4 2xl:text-2xl">Léo Mercier</p>

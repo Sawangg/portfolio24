@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
   return (
     <html lang={params.lang} className="overflow-x-hidden scroll-smooth">
-      <body className={`bg-primary text-[color:var(--text)] ${poppins.className}`}>
+      <body className={`text-[color:var(--text)] ${poppins.className}`}>
         {children}
         <Footer lang={params.lang} />
       </body>

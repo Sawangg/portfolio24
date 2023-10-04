@@ -1,20 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@lib/utils";
 
-export type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
+export type TextInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
+  resetTrigger: boolean;
   placeholder?: string;
   label?: string;
   disabled?: boolean;
   delay?: number;
 };
 
-export const Input: React.FC<InputProps> = ({ placeholder, label, delay, className, ...props }) => {
+export const TextInput: React.FC<TextInputProps> = ({
+  resetTrigger,
+  placeholder,
+  label,
+  delay,
+  className,
+  ...props
+}) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [hasBeenFocusedOnce, setHasBeenFocusedOnce] = useState<boolean>(false);
   const [hasInputText, setHasInputText] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (resetTrigger) {
+      setIsFocused(false);
+      setHasInputText(false);
+    }
+  }, [resetTrigger]);
 
   return (
     <motion.div
@@ -43,6 +58,7 @@ export const Input: React.FC<InputProps> = ({ placeholder, label, delay, classNa
       <div className="relative my-2 w-full">
         <input
           id={props.id}
+          type="text"
           onFocus={() => {
             setIsFocused(true);
             setHasBeenFocusedOnce(true);

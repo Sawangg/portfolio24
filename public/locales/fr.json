@@ -21,6 +21,9 @@
       "success": "Votre message a été envoyé"
     }
   },
+  "Carousel": {
+    "view": "En savoir plus"
+  },
   "Footer": {
     "random": ["Créé avec ❤️ à Tours", "Travaille à distance 💫 depuis la nouvelle norme", "Fait-il beau ☀️ dehors ?"]
   }

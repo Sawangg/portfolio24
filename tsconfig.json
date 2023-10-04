@@ -20,12 +20,14 @@
     "paths": {
       "@actions/": ["./src/app/_actions/*"],
       "@db/*": ["./src/db/*"],
+      "@env": ["./src/env.mjs"],
       "@hooks/*": ["./src/hooks/*"],
       "@lib/*": ["./src/lib/*"],
       "@modules/*": ["./src/modules/*"],
+      "@public/*": ["./public/*"],
+      "@src/*": ["./src/*"],
       "@styles/*": ["./src/styles/*"],
       "@ui/*": ["./src/ui/*"],
-      "@public/*": ["./public/*"]
     },
 
     // Emit

@@ -21,6 +21,9 @@
       "success": "Your message has been sent"
     }
   },
+  "Carousel": {
+    "view": "View project"
+  },
   "Footer": {
     "random": ["Created with ❤️ in Tours", "Working remotely 💫 since the new normal", "Is it sunny ☀️ outside?"]
   }

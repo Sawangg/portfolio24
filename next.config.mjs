@@ -2,6 +2,7 @@ import { env } from "./src/env.mjs";
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  productionBrowserSourceMaps: true,
   experimental: {
     serverActions: true,
     typedRoutes: true,
@@ -14,7 +15,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "placehold.co",
+        hostname: "mill3.studio",
       },
     ],
   },

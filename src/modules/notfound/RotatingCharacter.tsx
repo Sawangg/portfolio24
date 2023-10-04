@@ -12,7 +12,7 @@ export const RotatingCharacter: React.FC<RotatingCharacterProps> = ({ char }) =>
       initial={{ rotate: 0, x: 0 }}
       animate={{ rotate: 100, x: 30 }}
       transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-      style={{ display: "inline-block" }}
+      className="inline-block"
     >
       {char}
     </motion.span>

@@ -23,7 +23,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
   const mobileContainerRef = useRef<HTMLDivElement | null>(null);
   const { lockScroll, unlockScroll } = useScrollLock();
 
-  const mainVariants = {
+  const mobileNavigationVariants = {
     open: {
       y: 0,
       transition: {
@@ -115,8 +115,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         ref={mobileContainerRef}
         initial={false}
         animate={open ? "open" : "closed"}
-        variants={mainVariants}
-        aria-hidden
+        variants={mobileNavigationVariants}
         className="absolute left-0 top-0 z-40 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary md:hidden"
       >
         <figure className="text-xl uppercase">Léo Mercier</figure>

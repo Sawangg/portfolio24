@@ -17,7 +17,7 @@ export default async function Blog({ params }: { params: { lang: string } }) {
   return (
     <>
       <header className="flex flex-row items-center justify-between bg-black px-4 pt-6 text-primary md:items-start lg:px-16 2xl:px-24">
-        <FadeIn startY={0} delay={0.5} className="mr-8 flex flex-col justify-start gap-2 lg:mr-20 2xl:mr-24">
+        <FadeIn startY={0} delay={0.5} className="flex flex-col justify-start gap-2 md:mr-8 lg:mr-20 2xl:mr-24">
           <Link href="/" className="whitespace-nowrap text-xs">
             Léo MERCIER
           </Link>

@@ -1,8 +1,8 @@
 import "server-only";
 
 const dictionnaries = {
-  en: () => import("../../public/locales/en.json").then((module) => module.default),
-  fr: () => import("../../public/locales/fr.json").then((module) => module.default),
+  en: () => import("@public/locales/en.json").then((module) => module.default),
+  fr: () => import("@public/locales/fr.json").then((module) => module.default),
 };
 
 export type Locale = keyof typeof dictionnaries;

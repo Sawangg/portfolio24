@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@lib/utils";
 
@@ -8,16 +8,24 @@ export type TextAreaProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLTextAreaElement>,
   HTMLTextAreaElement
 > & {
+  resetTrigger: boolean;
   placeholder?: string;
   label?: string;
   disabled?: boolean;
   delay?: number;
 };
 
-export const TextArea: React.FC<TextAreaProps> = ({ placeholder, label, delay, className, ...props }) => {
+export const TextArea: React.FC<TextAreaProps> = ({ resetTrigger, placeholder, label, delay, className, ...props }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [hasBeenFocusedOnce, setHasBeenFocusedOnce] = useState<boolean>(false);
   const [hasInputText, setHasInputText] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (resetTrigger) {
+      setIsFocused(false);
+      setHasInputText(false);
+    }
+  }, [resetTrigger]);
 
   return (
     <motion.div

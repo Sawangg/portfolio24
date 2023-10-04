@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { socials } from "@lib/constants";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
+import { cn } from "@lib/utils";
 import { ContactForm } from "@modules/contact/ContactForm";
+import { ContactScene } from "@modules/contact/ContactScene";
 import { MailTo } from "@modules/contact/MailTo";
 import { Navigation } from "@modules/Navigation";
 import { FadeIn } from "@ui/FadeIn";
@@ -20,11 +23,11 @@ export default async function Contact({ params }: { params: { lang: string } }) 
   return (
     <>
       <header className="flex flex-row justify-between bg-lime-200 px-4 pt-6 lg:px-16 2xl:px-24">
-        <FadeIn startY={0} delay={0.5} className="mr-8 flex flex-col gap-2 lg:mr-20 2xl:mr-24">
+        <FadeIn startY={0} delay={0.5} className="flex flex-col gap-2 md:mr-8 lg:mr-20 2xl:mr-24">
           <Link href="/" className="whitespace-nowrap text-xs">
             Léo MERCIER
           </Link>
-          <p className="text-[0.625rem] font-light uppercase">
+          <p className="text-xxs font-light uppercase">
             Personal
             <br />
             portfolio (2024)
@@ -73,7 +76,30 @@ export default async function Contact({ params }: { params: { lang: string } }) 
 
         <ContactForm dictionnary={dictionnary} />
 
-        {/* TODO: socials */}
+        <section className="mt-12 flex w-full flex-col md:mt-20 md:flex-row">
+          <ul className="flex h-24 w-full text-center font-light uppercase md:h-56">
+            {socials.map((item, i) => (
+              <li
+                key={i}
+                className={cn("flex grow border border-x-0 border-y-black", i % 2 === 0 && "border-r border-r-black")}
+              >
+                <Link
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={item.href}
+                  className="flex h-full w-full items-center justify-center"
+                >
+                  <FadeIn as="p" startY={0} className="md:text-2xl">
+                    {item.name}
+                  </FadeIn>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <aside className="border border-x-0 border-t-0 border-b-black md:min-w-[50%] md:border-l md:border-t md:border-l-black md:border-t-black">
+            <ContactScene />
+          </aside>
+        </section>
       </main>
     </>
   );

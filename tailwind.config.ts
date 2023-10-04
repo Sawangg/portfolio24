@@ -1,5 +1,6 @@
+/* eslint-disable import/no-anonymous-default-export */
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./src/app/**/*.{ts,tsx}", "./src/modules/**/*.{ts,tsx}", "./src/ui/**/*.{ts,tsx}"],
   theme: {
     extend: {
@@ -9,6 +10,9 @@ module.exports = {
       },
       screens: {
         "3xl": "1920px",
+      },
+      fontSize: {
+        xxs: "0.625rem",
       },
     },
   },

@@ -7,3 +7,7 @@
   --secondary: #3f5d4e;
   --text: #000000;
 }
+
+body {
+  text-rendering: optimizeSpeed;
+}

@@ -1,3 +1,5 @@
+export const domain = "https://leomercier.com";
+
 export const socials = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/leomercier/" },
   { name: "Github", href: "https://github.com/Sawangg" },

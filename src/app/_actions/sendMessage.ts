@@ -1,8 +1,9 @@
 "use server";
 
-import { setTimeout } from "timers/promises";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { db } from "@db/index";
+import { messages } from "@db/schemas/messages";
 
 const SentMessage = z.object({
   name: z.string().min(1, { message: "name is required" }),
@@ -16,9 +17,16 @@ export const sendMessage = async (data: FormData) => {
   const { name, email, company, message } = Object.fromEntries(data);
   const result = SentMessage.safeParse({ name, email, company, message });
   if (!result.success) return { error: result.error.format() };
-  await setTimeout(1000);
+  await db
+    .insert(messages)
+    .values({
+      name: result.data.name,
+      email: result.data.email,
+      company: result.data.company,
+      message: result.data.message,
+    })
+    .execute();
 
-  // TODO save message
   revalidatePath("/contact");
   return { success: "ok" };
 };

@@ -6,7 +6,7 @@ export type MailToProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTM
 
 export const MailTo: React.FC<MailToProps> = ({ className }) => {
   return (
-    <button className={className} onClick={() => (window.location.href = `mailto:${email}`)}>
+    <button className={className} onClick={() => (window.location.href = `mailto:${email}`)} title={`Mail to ${email}`}>
       {email}
     </button>
   );

@@ -6,14 +6,15 @@ import { cn } from "@lib/utils";
 import { ContactForm } from "@modules/contact/ContactForm";
 import { ContactScene } from "@modules/contact/ContactScene";
 import { MailTo } from "@modules/contact/MailTo";
-import { Navigation } from "@modules/Navigation";
+import { Footer } from "@modules/Footer";
+import { Header } from "@modules/Header";
 import { FadeIn } from "@ui/FadeIn";
 
 export const metadata: Metadata = {
   title: "Léo MERCIER — Contact",
   themeColor: [
     { media: "(prefers-color-scheme: dark)", color: "#000000" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
   ],
 };
 
@@ -22,19 +23,7 @@ export default async function Contact({ params }: { params: { lang: string } }) 
 
   return (
     <>
-      <header className="flex flex-row justify-between bg-lime-200 px-4 pt-6 lg:px-16 2xl:px-24">
-        <FadeIn startY={0} delay={0.5} className="flex flex-col gap-2 md:mr-8 lg:mr-20 2xl:mr-24">
-          <Link href="/" className="whitespace-nowrap text-xs">
-            Léo MERCIER
-          </Link>
-          <p className="text-xxs font-light uppercase">
-            Personal
-            <br />
-            portfolio (2024)
-          </p>
-        </FadeIn>
-        <Navigation dictionnary={dictionnary} />
-      </header>
+      <Header dictionnary={dictionnary} className="bg-lime-200" />
 
       <main className="min-h-screen bg-lime-200 p-4 pb-24 md:flex md:flex-col md:py-24 lg:px-16 2xl:px-24" role="main">
         <FadeIn as="h1" className="my-8 text-3xl md:text-6xl 2xl:text-6xl">
@@ -101,6 +90,8 @@ export default async function Contact({ params }: { params: { lang: string } }) 
           </aside>
         </section>
       </main>
+
+      <Footer dictionnary={dictionnary} />
     </>
   );
 }

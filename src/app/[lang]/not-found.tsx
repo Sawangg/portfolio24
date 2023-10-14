@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
+import { Footer } from "@modules/Footer";
 import { Navigation } from "@modules/Navigation";
 import { AnimatedArrow } from "@modules/notfound/AnimatedArrow";
 import { RotatingCharacter } from "@modules/notfound/RotatingCharacter";
@@ -58,6 +59,8 @@ export default async function NotFound() {
           <Link href="/">Back Home</Link>
         </FadeIn>
       </main>
+
+      <Footer dictionnary={dictionnary} className="bg-primary text-black after:bg-primary" />
     </>
   );
 }

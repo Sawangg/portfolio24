@@ -4,8 +4,9 @@ import { defaultLocale, locales } from "@lib/constants";
 import { env } from "@src/env.mjs";
 
 const getRequestLocale = (request: NextRequest) => {
-  const languages = request.headers
-    .get("accept-language")!
+  const languageHeader = request.headers.get("accept-language");
+  if (!languageHeader) return defaultLocale;
+  const languages = languageHeader
     .split(",")
     .map((language) => language.split(";")[0])
     .map((language) => language.trim());

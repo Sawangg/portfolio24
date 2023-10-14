@@ -36,7 +36,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ dictionnary }) => {
     <form
       ref={formRef}
       action={sendMessageAction}
-      className="mt-6 flex flex-col gap-4 lg:gap-10 2xl:w-2/3 2xl:justify-end"
+      className="flex flex-col gap-4 pt-6 lg:gap-10 2xl:w-2/3 2xl:justify-end"
       noValidate
     >
       <TextInput
@@ -87,17 +87,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({ dictionnary }) => {
         <p className="text-xs uppercase text-red-400 lg:text-sm">{validationError.message._errors[0]}</p>
       )}
       {validationSuccess && <p className="text-xs uppercase text-green-400">{dictionnary.Contact.form.success}</p>}
-      <FadeIn delay={1.4} startY={0} className="flex flex-row items-center">
+      <FadeIn delay={1.4} startY={0} className="flex flex-row items-center gap-x-6">
         <label htmlFor="submit">5</label>
         <input
           id="submit"
           type="submit"
-          className="ml-6 cursor-pointer uppercase lg:text-lg"
+          className="cursor-pointer uppercase lg:text-lg"
           value={dictionnary.Contact.form.submit}
         />
-        <div className="relative ml-2 w-4">
-          <AspectRatio ratio={1 / 1}>
-            <Image src="/assets/arrow.svg" alt="" sizes="16px" aria-hidden fill />
+        <div className="relative w-5">
+          <AspectRatio ratio={42 / 11}>
+            <Image src="/assets/arrow-right.svg" sizes="16px" alt="" fill />
           </AspectRatio>
         </div>
       </FadeIn>

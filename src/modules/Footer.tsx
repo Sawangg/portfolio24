@@ -1,21 +1,26 @@
 import Link from "next/link";
 import { phone, socials } from "@lib/constants";
-import { getDictionnary, type Locale } from "@lib/getDictionnary";
+import type { Dictionnary } from "@lib/getDictionnary";
+import { cn } from "@lib/utils";
 import { MailTo } from "@modules/contact/MailTo";
 import { ActiveLink } from "@ui/ActiveLink";
 import { FadeIn } from "@ui/FadeIn";
 import { LanguageSwitcher } from "@ui/LanguageSwitcher";
 
 export type FooterProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-  lang: string;
+  dictionnary: Dictionnary;
 };
 
-export const Footer: React.FC<FooterProps> = async ({ lang }) => {
-  const dictionnary = await getDictionnary(lang as Locale);
+export const Footer: React.FC<FooterProps> = ({ dictionnary, className }) => {
   const randomIndex = Math.floor(Math.random() * dictionnary.Footer.random.length);
 
   return (
-    <footer className="grid grid-cols-2 grid-rows-3 overflow-hidden bg-black px-4 py-10 text-primary after:fixed after:bottom-0 after:left-0 after:-z-40 after:h-screen after:w-screen after:bg-black md:grid-cols-8 md:grid-rows-2 md:gap-y-32 md:pb-14 lg:px-16 2xl:px-24">
+    <footer
+      className={cn(
+        "grid grid-cols-2 grid-rows-3 overflow-hidden bg-black px-4 py-10 text-primary after:fixed after:bottom-0 after:left-0 after:-z-40 after:h-screen after:w-screen after:bg-black md:grid-cols-8 md:grid-rows-2 md:gap-y-32 md:pb-14 lg:px-16 2xl:px-24",
+        className,
+      )}
+    >
       <FadeIn as="ol" className="col-span-8 hidden uppercase md:grid">
         <li className="col-start-1 3xl:text-lg">
           <ActiveLink href={dictionnary.Navigation.items[0].href}>{dictionnary.Navigation.items[0].name}</ActiveLink>

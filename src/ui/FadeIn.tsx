@@ -28,10 +28,10 @@ export const FadeIn: React.FC<FadeInProps> = ({
   ...rest
 }) => {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: !repeat ?? true });
+  const isInView = useInView(ref, { once: !repeat });
 
-  // @ts-expect-error: property center could not be found
-  const MotionComponent = motion[as] as React.ComponentType<MotionComponentProps>;
+  // @ts-expect-error: "as" is not a valid prop for motion[as]
+  const MotionComponent = motion[as] as React.FC<MotionComponentProps>;
 
   return (
     <MotionComponent

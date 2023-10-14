@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { AspectRatio } from "@src/ui/AspectRatio";
 
 export const AnimatedArrow: React.FC = () => {
   return (
     <motion.div
       initial={{ x: "-10%" }}
-      animate={{ x: "40%" }}
+      animate={{ x: "20%" }}
       transition={{
         repeat: Infinity,
         repeatType: "reverse",
@@ -15,9 +16,11 @@ export const AnimatedArrow: React.FC = () => {
       }}
       className="relative w-6 md:w-10"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" className="text-primary">
-        <path d="M9 3L8.285 3.6965L12.075 7.5H2V8.5H12.075L8.285 12.2865L9 13L14 8L9 3Z" fill="currentColor" />
-      </svg>
+      <AspectRatio ratio={42 / 11}>
+        <svg viewBox="0 0 84 22" fill="none">
+          <path d="M0 11H83M83 11L72.5 0.5M83 11L72.5 21.5" stroke="currentColor"></path>
+        </svg>
+      </AspectRatio>
     </motion.div>
   );
 };

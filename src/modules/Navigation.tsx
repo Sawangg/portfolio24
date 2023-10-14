@@ -85,7 +85,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
       </nav>
 
       {/* Mobile navigation */}
-      <button className="relative z-50 self-start outline-none md:hidden" aria-label="Navigation" onClick={toggleOpen}>
+      <button className="relative z-40 self-start outline-none md:hidden" aria-label="Navigation" onClick={toggleOpen}>
         <svg width="24px" height="24px" viewBox="0 0 24 24">
           <motion.path
             initial="closed"
@@ -116,9 +116,11 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         initial={false}
         animate={open ? "open" : "closed"}
         variants={mobileNavigationVariants}
-        className="absolute left-0 top-0 z-40 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary md:hidden"
+        className="absolute left-0 top-0 z-30 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary md:hidden"
       >
-        <figure className="text-xl uppercase">Léo Mercier</figure>
+        <Link href="/" className="max-w-max text-xl uppercase">
+          Léo Mercier
+        </Link>
 
         <motion.ul
           initial={false}

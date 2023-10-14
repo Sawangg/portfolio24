@@ -1,22 +1,32 @@
+import Link from "next/link";
 import type { Dictionnary } from "@lib/getDictionnary";
+import { cn } from "@lib/utils";
 import { Navigation } from "@modules/Navigation";
 
 export type HeaderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
   dictionnary: Dictionnary;
+  navIconColor?: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({ dictionnary }) => {
+export const Header: React.FC<HeaderProps> = ({ dictionnary, navIconColor, className }) => {
   return (
-    <header className="flex flex-row justify-between bg-primary px-4 pt-6 lg:px-16 2xl:px-24">
-      <div className="flex flex-col gap-2 md:mr-8 lg:mr-20 2xl:mr-24">
-        <p className="whitespace-nowrap text-xs">Léo MERCIER</p>
+    <header
+      className={cn(
+        "flex flex-row justify-between bg-primary px-4 pt-6 md:gap-x-8 lg:gap-x-20 lg:px-16 2xl:gap-x-24 2xl:px-24",
+        className,
+      )}
+    >
+      <div className="flex flex-col gap-2">
+        <Link href="/" className="max-w-max whitespace-nowrap text-xs">
+          Léo MERCIER
+        </Link>
         <p className="text-xxs font-light uppercase">
           Personal
           <br />
           portfolio (2024)
         </p>
       </div>
-      <Navigation dictionnary={dictionnary} />
+      <Navigation iconColor={navIconColor} dictionnary={dictionnary} />
     </header>
   );
 };

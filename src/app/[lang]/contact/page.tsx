@@ -25,8 +25,11 @@ export default async function Contact({ params }: { params: { lang: string } }) 
     <>
       <Header dictionnary={dictionnary} className="bg-lime-200" />
 
-      <main className="min-h-screen bg-lime-200 p-4 pb-24 md:flex md:flex-col md:py-24 lg:px-16 2xl:px-24" role="main">
-        <FadeIn as="h1" className="my-8 text-3xl md:text-6xl 2xl:text-6xl">
+      <main
+        className="flex min-h-screen flex-col gap-y-6 bg-lime-200 p-4 pb-24 md:gap-y-0 md:py-24 lg:px-16 2xl:px-24"
+        role="main"
+      >
+        <FadeIn as="h1" className="pt-6 text-3xl md:text-6xl 2xl:text-6xl">
           Contact
         </FadeIn>
 
@@ -34,7 +37,7 @@ export default async function Contact({ params }: { params: { lang: string } }) 
           startY={30}
           duration={1}
           delay={0.5}
-          className="flex-row md:flex md:justify-between md:gap-20 md:text-justify"
+          className="flex flex-col gap-y-6 md:flex-row md:justify-between md:gap-20 md:text-justify"
         >
           <div className="flex flex-col items-start md:justify-end ">
             <p className="font-thin uppercase md:text-2xl">
@@ -48,18 +51,13 @@ export default async function Contact({ params }: { params: { lang: string } }) 
             startY={0}
             duration={1.5}
             delay={1}
-            className="my-6 text-2xl uppercase md:my-0 md:mt-auto md:w-1/2 md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+            className="text-2xl uppercase md:mt-auto md:w-1/2 md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
           >
             {dictionnary.Contact.main}
           </FadeIn>
         </FadeIn>
 
-        <FadeIn
-          as="h3"
-          startY={0}
-          delay={1}
-          className="my-6 text-lg font-thin md:mt-24 xl:text-3xl 2xl:mt-24 3xl:mt-28"
-        >
+        <FadeIn as="h3" startY={0} delay={1} className="text-lg font-thin md:mt-24 xl:text-3xl 2xl:mt-24 3xl:mt-28">
           {dictionnary.Contact.formTitle}
         </FadeIn>
 

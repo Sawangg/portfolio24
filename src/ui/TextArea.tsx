@@ -35,7 +35,7 @@ export const TextArea: React.FC<TextAreaProps> = ({ resetTrigger, placeholder, l
         duration: 0.5,
         delay: delay ?? 0,
       }}
-      className="flex flex-row items-center gap-6 border border-x-0 border-t-0 border-b-black"
+      className="flex flex-row items-start gap-6 border border-x-0 border-t-0 border-b-black py-2"
     >
       {label && (
         <motion.label
@@ -50,7 +50,7 @@ export const TextArea: React.FC<TextAreaProps> = ({ resetTrigger, placeholder, l
           {label}
         </motion.label>
       )}
-      <div className="relative my-2 w-full">
+      <div className="relative flex w-full">
         <textarea
           id={props.id}
           onFocus={() => {
@@ -59,7 +59,7 @@ export const TextArea: React.FC<TextAreaProps> = ({ resetTrigger, placeholder, l
           }}
           onBlur={() => setIsFocused(false)}
           onChange={(e) => (e.target.value.length > 0 ? setHasInputText(true) : setHasInputText(false))}
-          className={cn(`max-h-6 w-full resize-none bg-transparent outline-none ${className}`)}
+          className={cn(`w-full resize-none bg-transparent outline-none ${className}`)}
           {...props}
         />
         {!hasInputText && (
@@ -73,7 +73,7 @@ export const TextArea: React.FC<TextAreaProps> = ({ resetTrigger, placeholder, l
               stiffness: 150,
               damping: 20,
             }}
-            className="pointer-events-none absolute left-0 top-0 uppercase text-black lg:text-lg"
+            className="pointer-events-none absolute left-0 top-0 uppercase text-black lg:text-lg "
           >
             {placeholder}
           </motion.span>

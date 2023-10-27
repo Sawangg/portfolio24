@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { Footer } from "@modules/Footer";
-import { Navigation } from "@modules/Navigation";
+import { Header } from "@modules/Header";
 import { AnimatedArrow } from "@modules/notfound/AnimatedArrow";
 import { RotatingCharacter } from "@modules/notfound/RotatingCharacter";
 import { FadeIn } from "@ui/FadeIn";
+import { Star } from "@ui/Star";
 
 export const metadata: Metadata = {
   title: "Léo MERCIER — Not Found",
@@ -20,19 +21,7 @@ export default async function NotFound() {
 
   return (
     <>
-      <header className="flex flex-row justify-between bg-black px-4 pt-6 text-primary lg:px-16 2xl:px-24">
-        <div className="mr-8 flex flex-col gap-2 md:mr-12 lg:mr-20 2xl:mr-24">
-          <Link href="/" className="text-xs">
-            Léo MERCIER
-          </Link>
-          <p className="text-xxs font-light uppercase">
-            Personal
-            <br />
-            portfolio (2024)
-          </p>
-        </div>
-        <Navigation iconColor="hsl(0, 0%, 100%)" dictionnary={dictionnary} />
-      </header>
+      <Header dictionnary={dictionnary} navIconColor="hsl(0, 0%, 100%)" className="bg-black text-primary" />
 
       <main className="min-h-screen bg-black p-4 pb-24 pt-16 text-primary sm:py-32 lg:px-16 2xl:px-24">
         <div className="mb-14 block sm:mb-28 lg:flex lg:flex-row lg:gap-28">
@@ -48,7 +37,11 @@ export default async function NotFound() {
             Page <br /> No
             <RotatingCharacter char="t" />
             <br />
-            Found
+            <span className="flex">
+              F
+              <Star className="w-16" />
+              und
+            </span>
           </FadeIn>
         </div>
         <FadeIn as="q" startY={0} className="font-thin uppercase sm:text-2xl">

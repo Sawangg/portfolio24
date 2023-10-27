@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
   return (
     <html lang={params.lang} className="overflow-x-hidden scroll-smooth">
-      <body className={`overflow-x-hidden text-[color:var(--text)] ${poppins.className}`}>{children}</body>
+      <body className={`min-w-screen overflow-x-hidden text-[color:var(--text)] ${poppins.className}`}>{children}</body>
     </html>
   );
 }

@@ -5,8 +5,9 @@ import { Footer } from "@modules/Footer";
 import { Header } from "@modules/Header";
 import { BackToTop } from "@modules/landing/BackToTop";
 import { Carousel, type CarouselItem } from "@modules/landing/Carousel";
-import { LandingScene } from "@modules/landing/LandingScene";
+import { Star } from "@ui/Star";
 
+// import { LandingScene } from "@modules/landing/LandingScene";
 // import { FadeIn } from "@ui/FadeIn";
 
 export const metadata: Metadata = {
@@ -40,69 +41,18 @@ export default async function Home({ params }: { params: { lang: string } }) {
       <main className="min-h-screen bg-primary p-4 pb-24 md:pb-24 md:pt-8 lg:px-16 2xl:px-24" role="main">
         <section className="min-h-screen">
           <Carousel carouselItems={carouselItems} dictionnary={dictionnary} />
-          {/* <div className="mt-16 flex flex-col items-center justify-center">
-            <p className="mb-2 text-xl tracking-wide 2xl:mb-4 2xl:text-2xl">Léo Mercier</p>
-            <h1 className="text-center text-6xl font-bold uppercase 2xl:text-9xl">
-              Crafting
-              <br />
-              Excellence since
-              <br />
-              2012
-            </h1>
-          </div> */}
 
-          <LandingScene />
+          {/* <LandingScene /> */}
 
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-            <line
-              y1="50"
-              x2="100"
-              y2="50"
-              vectorEffect="non-scaling-stroke"
-              stroke="currentColor"
-              transform="rotate(30 50 50)"
-            ></line>
-            <line
-              y1="50"
-              x2="100"
-              y2="50"
-              vectorEffect="non-scaling-stroke"
-              stroke="currentColor"
-              transform="rotate(60 50 50)"
-            ></line>
-            <line
-              y1="50"
-              x2="100"
-              y2="50"
-              vectorEffect="non-scaling-stroke"
-              stroke="currentColor"
-              transform="rotate(90 50 50)"
-            ></line>
-            <line
-              y1="50"
-              x2="100"
-              y2="50"
-              vectorEffect="non-scaling-stroke"
-              stroke="currentColor"
-              transform="rotate(120 50 50)"
-            ></line>
-            <line
-              y1="50"
-              x2="100"
-              y2="50"
-              vectorEffect="non-scaling-stroke"
-              stroke="currentColor"
-              transform="rotate(150 50 50)"
-            ></line>
-            <line
-              y1="50"
-              x2="100"
-              y2="50"
-              vectorEffect="non-scaling-stroke"
-              stroke="currentColor"
-              transform="rotate(180 50 50)"
-            ></line>
-          </svg>
+          <h1 className="flex flex-row items-center text-9xl font-thin uppercase">
+            Lé
+            <span className="w-24">
+              <Star />
+            </span>
+          </h1>
+          <p className="font-thin uppercase">
+            Senior software engineer based in Paris — Master&apos;s degree in computer science
+          </p>
         </section>
 
         {/* About */}

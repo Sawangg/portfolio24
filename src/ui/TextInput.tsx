@@ -39,7 +39,7 @@ export const TextInput: React.FC<TextInputProps> = ({
         duration: 0.5,
         delay: delay ?? 0,
       }}
-      className="flex flex-row items-center gap-6 border border-x-0 border-t-0 border-b-black"
+      className="flex flex-row items-center gap-6 border border-x-0 border-t-0 border-b-black py-2"
     >
       {label && (
         <motion.label
@@ -55,7 +55,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           {label}
         </motion.label>
       )}
-      <div className="relative my-2 w-full">
+      <div className="relative w-full">
         <input
           id={props.id}
           type="text"

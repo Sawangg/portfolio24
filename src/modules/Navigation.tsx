@@ -44,8 +44,12 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
   };
 
   const toggleOpen = () => {
-    if (open) unlockScroll();
-    else lockScroll();
+    if (open) {
+      unlockScroll();
+    } else {
+      if (mobileContainerRef.current) mobileContainerRef.current.style.display = "grid";
+      lockScroll();
+    }
     setOpen(!open);
   };
 
@@ -58,6 +62,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
       mobileContainerRef.current.style.minHeight = `calc(${viewportHeight}px - ${
         window.visualViewport ? window.visualViewport.height - viewportHeight : 0
       }px + 1px)`;
+      mobileContainerRef.current.style.minWidth = `${window.innerWidth}px`;
     }
   }, [pathname, unlockScroll]);
 
@@ -113,17 +118,20 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
       </button>
       <motion.div
         ref={mobileContainerRef}
-        initial={false}
+        initial={"closed"}
         animate={open ? "open" : "closed"}
         variants={mobileNavigationVariants}
-        className="absolute left-0 top-0 z-30 grid min-h-screen w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary md:hidden"
+        onAnimationComplete={(def) =>
+          !open && def === "closed" && mobileContainerRef.current && (mobileContainerRef.current.style.display = "none")
+        }
+        className="absolute left-0 top-0 z-30 hidden min-h-screen min-w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary"
       >
         <Link href="/" className="max-w-max text-xl uppercase">
           Léo Mercier
         </Link>
 
         <motion.ul
-          initial={false}
+          initial={"closed"}
           animate={open ? "open" : "closed"}
           className="col-span-2 flex flex-col self-center text-2xl font-thin uppercase"
         >

@@ -13,6 +13,9 @@ export default {
       fontSize: {
         xxs: "0.625rem",
       },
+      minWidth: {
+        screen: "100vw",
+      },
     },
   },
   plugins: [],

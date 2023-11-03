@@ -7,8 +7,6 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: env.NODE_ENV !== "production" ? true : false,
     contentDispositionType: env.NODE_ENV !== "production" ? "attachment" : undefined,
-    contentSecurityPolicy:
-      env.NODE_ENV !== "production" ? "default-src 'self'; script-src 'none'; sandbox;" : undefined,
     remotePatterns: [
       {
         protocol: "https",

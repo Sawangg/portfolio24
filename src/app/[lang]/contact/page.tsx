@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { socials } from "@lib/constants";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
@@ -12,19 +12,18 @@ import { FadeIn } from "@ui/FadeIn";
 
 export const metadata: Metadata = {
   title: "Léo MERCIER — Contact",
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-  ],
+};
+
+export const viewport: Viewport = {
+  themeColor: "rgb(217 249 157)",
 };
 
 export default async function Contact({ params }: { params: { lang: string } }) {
   const dictionnary = await getDictionnary(params.lang as Locale);
 
   return (
-    <>
+    <body className="min-w-screen overflow-x-hidden bg-lime-200">
       <Header dictionnary={dictionnary} className="bg-lime-200" />
-
       <main
         className="flex min-h-screen flex-col gap-y-6 bg-lime-200 p-4 pb-24 md:gap-y-0 md:py-24 lg:px-16 2xl:px-24"
         role="main"
@@ -88,8 +87,7 @@ export default async function Contact({ params }: { params: { lang: string } }) 
           </aside>
         </section>
       </main>
-
       <Footer dictionnary={dictionnary} />
-    </>
+    </body>
   );
 }

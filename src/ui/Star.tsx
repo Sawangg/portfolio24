@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export type StarProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {};
+export type StarProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
 
 export const Star: React.FC<StarProps> = ({ className }) => {
   return (

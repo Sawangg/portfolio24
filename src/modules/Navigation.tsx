@@ -53,17 +53,24 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
     setOpen(!open);
   };
 
-  // Unlock scroll on page change & set container height
   const pathname = usePathname();
-  useEffect(() => {
-    unlockScroll();
+
+  const setContainerSize = () => {
     if (mobileContainerRef.current) {
-      const viewportHeight = window.innerHeight;
-      mobileContainerRef.current.style.minHeight = `calc(${viewportHeight}px - ${
-        window.visualViewport ? window.visualViewport.height - viewportHeight : 0
+      const newHeight = `calc(${window.innerHeight}px - ${
+        window.visualViewport ? window.visualViewport.height - window.innerHeight : 0
       }px + 1px)`;
+      mobileContainerRef.current.style.minHeight = newHeight;
+      mobileContainerRef.current.style.maxHeight = newHeight;
       mobileContainerRef.current.style.minWidth = `${window.innerWidth}px`;
     }
+  };
+
+  useEffect(() => {
+    unlockScroll(); // Unlock scroll on page change
+    setContainerSize();
+    window.addEventListener("resize", setContainerSize);
+    return () => window.removeEventListener("resize", setContainerSize);
   }, [pathname, unlockScroll]);
 
   return (
@@ -124,7 +131,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         onAnimationComplete={(def) =>
           !open && def === "closed" && mobileContainerRef.current && (mobileContainerRef.current.style.display = "none")
         }
-        className="absolute left-0 top-0 z-30 hidden min-h-screen min-w-full grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary"
+        className="absolute left-0 top-0 z-30 hidden grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary"
       >
         <Link href="/" className="max-w-max text-xl uppercase">
           Léo Mercier

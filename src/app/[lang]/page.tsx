@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Viewport } from "next";
 import Link from "next/link";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { Footer } from "@modules/Footer";
@@ -7,14 +7,8 @@ import { BackToTop } from "@modules/landing/BackToTop";
 import { Carousel, type CarouselItem } from "@modules/landing/Carousel";
 import { Star } from "@ui/Star";
 
-// import { LandingScene } from "@modules/landing/LandingScene";
-// import { FadeIn } from "@ui/FadeIn";
-
-export const metadata: Metadata = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#FFFFFF" },
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-  ],
+export const viewport: Viewport = {
+  themeColor: "var(--primary)",
 };
 
 export default async function Home({ params }: { params: { lang: string } }) {
@@ -35,9 +29,8 @@ export default async function Home({ params }: { params: { lang: string } }) {
   ];
 
   return (
-    <>
+    <body className="min-w-screen overflow-x-hidden bg-primary">
       <Header dictionnary={dictionnary} />
-
       <main className="min-h-screen bg-primary p-4 pb-24 md:pb-24 md:pt-8 lg:px-16 2xl:px-24" role="main">
         <section className="min-h-screen">
           <Carousel carouselItems={carouselItems} dictionnary={dictionnary} />
@@ -83,8 +76,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
 
         <BackToTop />
       </main>
-
       <Footer dictionnary={dictionnary} />
-    </>
+    </body>
   );
 }

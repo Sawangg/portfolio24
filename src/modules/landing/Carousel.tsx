@@ -73,7 +73,7 @@ export const Carousel: React.FC<CarouselProps> = ({ dictionnary, carouselItems }
     <>
       <div className="flex flex-col gap-3 font-light">
         <motion.ol
-          className="flex flex-row gap-4 lg:min-w-full lg:justify-around lg:gap-8"
+          className="flex gap-4 lg:min-w-full lg:justify-around lg:gap-8"
           animate={controls}
           variants={variants}
         >
@@ -98,7 +98,7 @@ export const Carousel: React.FC<CarouselProps> = ({ dictionnary, carouselItems }
                   />
                 </AspectRatio>
               </div>
-              <FadeIn startY={0} className="hidden w-full items-center justify-end gap-4 lg:flex">
+              <FadeIn className="hidden w-full items-center justify-end gap-4 lg:flex">
                 <figure className="w-4">
                   <AspectRatio ratio={42 / 11}>
                     <Image src="/assets/arrow-right.svg" sizes="16px" alt="" fill />
@@ -124,7 +124,6 @@ export const Carousel: React.FC<CarouselProps> = ({ dictionnary, carouselItems }
             </figure>
           </aside>
           <FadeIn
-            startY={0}
             as="button"
             className="uppercase"
             onClick={() => setClickedCarouselItem(carouselItems[currentPage - 1])}

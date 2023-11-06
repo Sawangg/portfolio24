@@ -35,7 +35,7 @@ export const TextArea: React.FC<TextAreaProps> = ({ resetTrigger, placeholder, l
         duration: 0.5,
         delay: delay ?? 0,
       }}
-      className="flex flex-row items-start gap-6 border border-x-0 border-t-0 border-b-black py-2"
+      className="flex items-start gap-6 border border-x-0 border-t-0 border-b-black py-2"
     >
       {label && (
         <motion.label

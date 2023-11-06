@@ -13,7 +13,7 @@ export default async function WorkStudioUnivers({ params }: { params: { lang: st
   return (
     <body className="min-w-screen overflow-x-hidden bg-slate-200">
       <Header dictionnary={dictionnary} className="bg-slate-200" />
-      <main className="min-h-screen bg-slate-200 p-4 pb-24 md:pb-24 md:pt-8 lg:px-16 2xl:px-24" role="main"></main>
+      <main className="min-h-screen bg-slate-200 p-4 pb-24 md:pb-24 md:pt-8 lg:px-16 2xl:px-24"></main>
       <Footer dictionnary={dictionnary} />
     </body>
   );

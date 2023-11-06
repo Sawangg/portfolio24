@@ -1,49 +1,44 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, type HTMLMotionProps } from "framer-motion";
-
-type MotionComponentProps = {
-  as?: keyof JSX.IntrinsicElements;
-} & HTMLMotionProps<"div">;
+import { motion, useInView, type MotionProps } from "framer-motion";
+import { cn } from "@lib/utils";
 
 export type FadeInProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+  as?: keyof React.JSX.IntrinsicElements;
   repeat?: boolean;
   startY?: number;
   duration?: number;
   delay?: number;
   trigger?: boolean;
   children: React.ReactNode;
-} & MotionComponentProps;
+};
 
 export const FadeIn: React.FC<FadeInProps> = ({
   as = "div",
   repeat,
-  startY,
-  duration,
-  delay,
-  trigger,
+  startY = 0,
+  duration = 0.3,
+  delay = 0,
+  trigger = true,
   children,
   className,
-  ...rest
 }) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: !repeat });
 
-  // @ts-expect-error: "as" is not a valid prop for motion[as]
-  const MotionComponent = motion[as] as React.FC<MotionComponentProps>;
+  // @ts-expect-error: should be motion(as) but not working in the navigation for some reason
+  const MotionComponent = motion[as] as React.FC<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & MotionProps, HTMLElement>
+  >;
 
   return (
     <MotionComponent
       ref={ref}
-      initial={{ y: startY ?? 10, opacity: 0 }}
-      animate={{
-        y: isInView && (trigger ?? true) ? 0 : startY ?? 10,
-        opacity: isInView && (trigger ?? true) ? 1 : 0,
-      }}
-      transition={{ duration: duration ?? 0.3, delay: delay ?? 0, type: "spring", damping: 7, stiffness: 20 }}
-      className={className}
-      {...rest}
+      initial={{ y: startY, opacity: 0 }}
+      animate={isInView && trigger ? { opacity: 1, y: 0 } : { opacity: 0, y: startY }}
+      transition={{ duration, delay, type: "spring", damping: 7, stiffness: 20 }}
+      className={cn(className)}
     >
       {children}
     </MotionComponent>

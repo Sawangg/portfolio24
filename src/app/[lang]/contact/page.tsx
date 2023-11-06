@@ -24,11 +24,8 @@ export default async function Contact({ params }: { params: { lang: string } }) 
   return (
     <body className="min-w-screen overflow-x-hidden bg-lime-200">
       <Header dictionnary={dictionnary} className="bg-lime-200" />
-      <main
-        className="flex min-h-screen flex-col gap-y-6 bg-lime-200 p-4 pb-24 md:gap-y-0 md:py-24 lg:px-16 2xl:px-24"
-        role="main"
-      >
-        <FadeIn as="h1" className="pt-6 text-3xl md:text-6xl 2xl:text-6xl">
+      <main className="flex min-h-screen flex-col gap-y-6 bg-lime-200 p-4 pb-24 md:gap-y-0 md:py-24 lg:px-16 2xl:px-24">
+        <FadeIn as="h1" startY={10} className="pt-6 text-3xl md:text-6xl 2xl:text-6xl">
           Contact
         </FadeIn>
 
@@ -43,11 +40,10 @@ export default async function Contact({ params }: { params: { lang: string } }) 
               Paris <br />
               France
             </p>
-            <MailTo className="mb-2 font-thin italic md:mt-6 md:text-2xl" />
+            <MailTo className="pb-2 font-thin italic md:mt-6 md:text-2xl" />
           </div>
           <FadeIn
             as="h2"
-            startY={0}
             duration={1.5}
             delay={1}
             className="text-2xl uppercase md:mt-auto md:w-1/2 md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
@@ -56,7 +52,7 @@ export default async function Contact({ params }: { params: { lang: string } }) 
           </FadeIn>
         </FadeIn>
 
-        <FadeIn as="h3" startY={0} delay={1} className="text-lg font-thin md:mt-24 xl:text-3xl 2xl:mt-24 3xl:mt-28">
+        <FadeIn as="h3" delay={1} className="text-lg font-thin md:mt-24 xl:text-3xl 2xl:mt-24 3xl:mt-28">
           {dictionnary.Contact.formTitle}
         </FadeIn>
 
@@ -75,7 +71,7 @@ export default async function Contact({ params }: { params: { lang: string } }) 
                   href={item.href}
                   className="flex h-full w-full items-center justify-center"
                 >
-                  <FadeIn as="p" startY={0} className="md:text-2xl">
+                  <FadeIn as="p" className="md:text-2xl">
                     {item.name}
                   </FadeIn>
                 </Link>

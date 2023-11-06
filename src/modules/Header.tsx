@@ -12,7 +12,7 @@ export const Header: React.FC<HeaderProps> = ({ dictionnary, navIconColor, class
   return (
     <header
       className={cn(
-        "flex flex-row justify-between bg-primary px-4 pt-6 md:gap-x-8 lg:gap-x-20 lg:px-16 2xl:gap-x-24 2xl:px-24",
+        "flex justify-between bg-primary px-4 pt-4 md:gap-x-8 lg:gap-x-20 lg:px-16 2xl:gap-x-24 2xl:px-24",
         className,
       )}
     >

@@ -5,6 +5,8 @@ import { Footer } from "@modules/Footer";
 import { Header } from "@modules/Header";
 import { BackToTop } from "@modules/landing/BackToTop";
 import { Carousel, type CarouselItem } from "@modules/landing/Carousel";
+import { FadeIn } from "@ui/FadeIn";
+import { FadeWithScroll } from "@ui/FadeWithScroll";
 import { Star } from "@ui/Star";
 
 export const viewport: Viewport = {
@@ -31,42 +33,21 @@ export default async function Home({ params }: { params: { lang: string } }) {
   return (
     <body className="min-w-screen overflow-x-hidden bg-primary">
       <Header dictionnary={dictionnary} />
-      <main className="min-h-screen bg-primary p-4 pb-24 md:pb-24 md:pt-8 lg:px-16 2xl:px-24" role="main">
-        <section className="min-h-screen">
+      <main className="bg-primary p-4 pb-24 md:pb-24 md:pt-8 lg:px-16 2xl:px-24">
+        <section className="flex h-[90vh] grow flex-col justify-between pb-2">
           <Carousel carouselItems={carouselItems} dictionnary={dictionnary} />
-
-          {/* <LandingScene /> */}
-
-          <h1 className="flex flex-row items-center text-9xl font-thin uppercase">
-            Lé
-            <span className="w-24">
-              <Star />
-            </span>
-          </h1>
-          <p className="font-thin uppercase">
-            Senior software engineer based in Paris — Master&apos;s degree in computer science
-          </p>
+          <div className="flex flex-col gap-y-4 md:flex-row">
+            <h1 className="flex items-center text-10xl font-thin uppercase">
+              Lé
+              <Star className="w-32" />
+            </h1>
+            <FadeIn as="aside">
+              <FadeWithScroll as="p" className="font-thin uppercase">
+                Senior software engineer based in Paris — &emsp;&emsp;Master&apos;s degree in computer science
+              </FadeWithScroll>
+            </FadeIn>
+          </div>
         </section>
-
-        {/* About */}
-        {/* <section className="flex flex-col gap-6">
-          <FadeIn>
-            <p className="text-2xl text-secondary">( 01 ).</p>
-            <p className="text-2xl">
-              I&apos;m a dynamic senior developper with a master&apos;s degree in computer science that can bring any of
-              your ideas to life.
-            </p>
-          </FadeIn>
-
-          <FadeIn className="ml-16">
-            <p>( ABOUT )</p>
-            <p>
-              Born in Tours ( France ), the city of castles <br />
-              <br />
-              I&apos;m specialized in the NodeJS ecosystem, mainly React & TypeScript
-            </p>
-          </FadeIn>
-        </section> */}
 
         <section>
           <Link href="/contact" className="text-xl uppercase">

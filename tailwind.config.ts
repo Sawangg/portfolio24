@@ -11,7 +11,18 @@ export default {
         "3xl": "1920px",
       },
       fontSize: {
-        xxs: "0.625rem",
+        xxs: [
+          "0.625rem",
+          {
+            lineHeight: "1rem",
+          },
+        ],
+        "10xl": [
+          "9rem",
+          {
+            lineHeight: "1rem",
+          },
+        ],
       },
       minWidth: {
         screen: "100vw",

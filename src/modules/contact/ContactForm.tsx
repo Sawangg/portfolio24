@@ -87,7 +87,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ dictionnary }) => {
         <p className="text-xs uppercase text-red-400 lg:text-sm">{validationError.message._errors[0]}</p>
       )}
       {validationSuccess && <p className="text-xs uppercase text-green-400">{dictionnary.Contact.form.success}</p>}
-      <FadeIn delay={1.4} startY={0} className="flex flex-row items-center gap-x-6">
+      <FadeIn delay={1.4} className="flex items-center gap-x-6">
         <label htmlFor="submit">5</label>
         <input
           id="submit"

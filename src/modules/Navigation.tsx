@@ -44,11 +44,11 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
   };
 
   const toggleOpen = () => {
-    if (open) {
-      unlockScroll();
-    } else {
+    if (!open) {
       if (mobileContainerRef.current) mobileContainerRef.current.style.display = "grid";
       lockScroll();
+    } else {
+      unlockScroll();
     }
     setOpen(!open);
   };
@@ -128,9 +128,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         initial={"closed"}
         animate={open ? "open" : "closed"}
         variants={mobileNavigationVariants}
-        onAnimationComplete={(def) =>
-          !open && def === "closed" && mobileContainerRef.current && (mobileContainerRef.current.style.display = "none")
-        }
+        onAnimationComplete={(def) => !open && def === "closed" && (mobileContainerRef.current!.style.display = "none")}
         className="absolute left-0 top-0 z-30 hidden grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary"
       >
         <Link href="/" className="max-w-max text-xl uppercase">
@@ -150,7 +148,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
               transition={{ duration: 0.5, delay: open ? i * 0.2 : 0.3 - i * 0.1 }}
               className={cn("py-4", i !== dictionnary.Navigation.items.length - 1 && "border-x-0 border-b-[1px]")}
             >
-              <FadeIn trigger={open}>
+              <FadeIn trigger={open} startY={10}>
                 <Link href={item.href} className="block w-full outline-none" title={item.name}>
                   {item.name}
                 </Link>
@@ -159,14 +157,15 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
           ))}
         </motion.ul>
 
-        <FadeIn as="aside" trigger={open} className="flex flex-col">
-          <p className="mb-2 grow font-thin">{dictionnary.Navigation.random}</p>
-          <p className="mb-2 font-thin">{email}</p>
+        <FadeIn as="aside" trigger={open} startY={10} className="flex flex-col">
+          <p className="grow pb-2 font-thin">{dictionnary.Navigation.random}</p>
+          <p className="pb-2 font-thin">{email}</p>
           <p className="font-thin">{phone}</p>
         </FadeIn>
         <FadeIn
           as="ul"
           trigger={open}
+          startY={10}
           className="flex flex-col items-end gap-2 self-center justify-self-end text-sm md:col-start-8 md:row-start-2"
         >
           {socials.map((item, i) => (
@@ -185,14 +184,14 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
           className="col-span-2"
         />
 
-        <FadeIn as="ul" trigger={open} duration={0.1} className="col-span-2 flex justify-between">
-          <li>
+        <ul className="col-span-2 flex justify-between">
+          <FadeIn as="li" trigger={open} startY={10} duration={0.1}>
             <LanguageSwitcher lang="fr" className="uppercase disabled:text-zinc-800" disable />
-          </li>
-          <li>
+          </FadeIn>
+          <FadeIn as="li" trigger={open} startY={10} duration={0.1}>
             <LanguageSwitcher lang="en" className="uppercase disabled:text-zinc-800" disable />
-          </li>
-        </FadeIn>
+          </FadeIn>
+        </ul>
       </motion.div>
     </>
   );

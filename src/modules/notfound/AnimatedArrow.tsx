@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AspectRatio } from "@src/ui/AspectRatio";
+import { AspectRatio } from "@ui/AspectRatio";
 
 export const AnimatedArrow: React.FC = () => {
   return (

@@ -26,19 +26,23 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
   const mobileNavigationVariants = {
     open: {
       y: 0,
+      borderRadius: 0,
       transition: {
         type: "spring",
         stiffness: 60,
         damping: 15,
+        borderBottomLeftRadius: { duration: 1 },
+        borderBottomRightRadius: { duration: 1 },
       },
     },
     closed: {
       y: "-100%",
+      borderRadius: "0px 0px 250px 250px / 0px 0px 25px 25px",
       transition: {
         type: "spring",
         stiffness: 60,
         damping: 15,
-        delay: 0.5,
+        delay: 0.35,
       },
     },
   };
@@ -59,7 +63,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
     if (mobileContainerRef.current) {
       const newHeight = `calc(${window.innerHeight}px - ${
         window.visualViewport ? window.visualViewport.height - window.innerHeight : 0
-      }px + 1px)`;
+      }px)`;
       mobileContainerRef.current.style.minHeight = newHeight;
       mobileContainerRef.current.style.maxHeight = newHeight;
       mobileContainerRef.current.style.minWidth = `${window.innerWidth}px`;
@@ -129,7 +133,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         animate={open ? "open" : "closed"}
         variants={mobileNavigationVariants}
         onAnimationComplete={(def) => !open && def === "closed" && (mobileContainerRef.current!.style.display = "none")}
-        className="absolute left-0 top-0 z-30 hidden grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-6 text-primary"
+        className="absolute left-0 top-0 z-30 hidden grid-cols-2 grid-rows-[auto_1fr_auto_auto] gap-x-4 gap-y-7 bg-black px-4 pb-8 pt-4 text-primary"
       >
         <Link href="/" className="max-w-max text-xl uppercase">
           Léo Mercier
@@ -148,7 +152,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
               transition={{ duration: 0.5, delay: open ? i * 0.2 : 0.3 - i * 0.1 }}
               className={cn("py-4", i !== dictionnary.Navigation.items.length - 1 && "border-x-0 border-b-[1px]")}
             >
-              <FadeIn trigger={open} startY={10}>
+              <FadeIn trigger={open} startY={20}>
                 <Link href={item.href} className="block w-full outline-none" title={item.name}>
                   {item.name}
                 </Link>
@@ -157,7 +161,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
           ))}
         </motion.ul>
 
-        <FadeIn as="aside" trigger={open} startY={10} className="flex flex-col">
+        <FadeIn as="aside" trigger={open} startY={30} className="flex flex-col">
           <p className="grow pb-2 font-thin">{dictionnary.Navigation.random}</p>
           <p className="pb-2 font-thin">{email}</p>
           <p className="font-thin">{phone}</p>
@@ -165,7 +169,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         <FadeIn
           as="ul"
           trigger={open}
-          startY={10}
+          startY={30}
           className="flex flex-col items-end gap-2 self-center justify-self-end text-sm md:col-start-8 md:row-start-2"
         >
           {socials.map((item, i) => (
@@ -185,10 +189,10 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
         />
 
         <ul className="col-span-2 flex justify-between">
-          <FadeIn as="li" trigger={open} startY={10} duration={0.1}>
+          <FadeIn as="li" trigger={open} startY={30} duration={0.1}>
             <LanguageSwitcher lang="fr" className="uppercase disabled:text-zinc-800" disable />
           </FadeIn>
-          <FadeIn as="li" trigger={open} startY={10} duration={0.1}>
+          <FadeIn as="li" trigger={open} startY={30} duration={0.1}>
             <LanguageSwitcher lang="en" className="uppercase disabled:text-zinc-800" disable />
           </FadeIn>
         </ul>

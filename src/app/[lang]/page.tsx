@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getDictionnary, type Locale } from "@lib/getDictionnary";
 import { Footer } from "@modules/Footer";
 import { Header } from "@modules/Header";
-import { BackToTop } from "@modules/landing/BackToTop";
+// import { BackToTop } from "@modules/landing/BackToTop";
 import { Carousel, type CarouselItem } from "@modules/landing/Carousel";
 import { FadeIn } from "@ui/FadeIn";
 import { FadeWithScroll } from "@ui/FadeWithScroll";
@@ -48,14 +48,26 @@ export default async function Home({ params }: { params: { lang: string } }) {
             </FadeIn>
           </div>
         </section>
-
+        <section className="h-72 bg-gray-600"></section>
         <section>
-          <Link href="/contact" className="text-xl uppercase">
+          <h2 className="pt-14 text-lg font-thin">
+            Hey! My name is Léo Mercier. I&apos;m an engineer with{" "}
+            <span className="font-serif">{new Date().getFullYear() - 2013} years</span> of experience in development.{" "}
+            <span>
+              <Star className="w-6" />
+            </span>
+            Skilled in creating strategic design work that effectively conveys brand messaging and drives customer
+            engagement.
+          </h2>
+        </section>
+        <section className="h-72 bg-gray-600"></section>
+        <section>
+          <Link href="/contact" className="uppercase">
             Contact
           </Link>
+          <p className="text-xl uppercase">Vous avez un projet ? Vous souhaitez me contacter ?</p>
         </section>
-
-        <BackToTop />
+        {/* <BackToTop /> */}
       </main>
       <Footer dictionnary={dictionnary} />
     </body>

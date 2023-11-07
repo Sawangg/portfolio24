@@ -79,7 +79,9 @@ export const Carousel: React.FC<CarouselProps> = ({ dictionnary, carouselItems }
         >
           {carouselItems.map((item, i) => (
             <li key={i} className="flex min-w-full touch-none flex-col gap-y-4 lg:min-w-[50%]" {...bind()}>
-              <div
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: "100%" }}
                 className={cn("flex cursor-pointer items-center px-4 py-24 lg:px-10 lg:py-16", item.backgroundColor)}
                 onClick={() => setClickedCarouselItem(item)}
                 onKeyDown={() => setClickedCarouselItem(item)}
@@ -97,7 +99,7 @@ export const Carousel: React.FC<CarouselProps> = ({ dictionnary, carouselItems }
                     priority={i === 0}
                   />
                 </AspectRatio>
-              </div>
+              </motion.div>
               <FadeIn className="hidden w-full items-center justify-end gap-4 lg:flex">
                 <figure className="w-4">
                   <AspectRatio ratio={42 / 11}>

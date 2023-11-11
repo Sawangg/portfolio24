@@ -3,12 +3,12 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import type { ZodFormattedError } from "zod";
+import { sendMessage, type SendMessage } from "@actions/sendMessage";
 import type { Dictionnary } from "@lib/getDictionnary";
 import { AspectRatio } from "@ui/AspectRatio";
 import { FadeIn } from "@ui/FadeIn";
 import { TextArea } from "@ui/TextArea";
 import { TextInput } from "@ui/TextInput";
-import { sendMessage, type SendMessage } from "../../app/_actions/sendMessage";
 
 export type ContactFormProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLFormElement>, HTMLFormElement> & {
   dictionnary: Dictionnary;

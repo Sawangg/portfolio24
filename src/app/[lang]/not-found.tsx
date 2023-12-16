@@ -37,7 +37,7 @@ export default async function NotFound() {
             <br />
             <span className="flex">
               F
-              <Star className="w-16" />
+              <Star className="w-16 md:w-20 lg:w-28 xl:w-36 2xl:w-40 3xl:w-48" />
               und
             </span>
           </FadeIn>

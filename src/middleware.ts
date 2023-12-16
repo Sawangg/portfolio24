@@ -24,21 +24,24 @@ export function middleware(request: NextRequest): NextResponse {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const cspHeader = `
     default-src 'none';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' 'unsafe-eval' ${
-      env.NODE_ENV === "development" && "'unsafe-eval'"
-    } https: http:;
+    script-src-elem 'self' 'nonce-${nonce}';
+    script-src 'self' 'nonce-${nonce}' ${env.NODE_ENV === "development" && "'unsafe-eval'"};
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data:;
-    font-src 'self';
+    img-src 'self';
+    font-src 'self' https:;
     connect-src 'self';
     form-action 'self';
     object-src 'none';
     frame-ancestors 'none';
     base-uri 'none';
     block-all-mixed-content;
+    upgrade-insecure-requests;
   `;
-  request.headers.set("x-nonce", nonce);
+  request.headers.set("X-Nonce", nonce);
   request.headers.set("Content-Security-Policy", cspHeader.replace(/\s{2,}/g, " ").trim());
+
+  request.headers.set("X-DNS-Prefetch-Control", "on");
+  request.headers.set("X-Content-Type-Options", "nosniff");
 
   // Localization
   const pathname = request.nextUrl.pathname;
@@ -58,5 +61,13 @@ export function middleware(request: NextRequest): NextResponse {
 
 export const config = {
   runtime: "experimental-edge",
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: [
+    {
+      source: "/((?!api|_next|.*\\..*).*)",
+      missing: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+  ],
 };

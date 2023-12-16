@@ -3,6 +3,7 @@ import { env } from "./src/env.mjs";
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
   productionBrowserSourceMaps: true,
   images: {
     dangerouslyAllowSVG: env.NODE_ENV !== "production" ? true : false,

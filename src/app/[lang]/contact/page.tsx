@@ -8,6 +8,7 @@ import { ContactScene } from "@modules/contact/ContactScene";
 import { MailTo } from "@modules/contact/MailTo";
 import { Footer } from "@modules/Footer";
 import { Header } from "@modules/Header";
+import { Clock } from "@ui/Clock";
 import { FadeIn } from "@ui/FadeIn";
 
 export const metadata: Metadata = {
@@ -25,8 +26,11 @@ export default async function Contact({ params }: { params: { lang: string } }) 
     <body className="min-w-screen overflow-x-hidden bg-lime-200">
       <Header dictionnary={dictionnary} className="bg-lime-200" />
       <main className="flex min-h-screen flex-col gap-y-6 bg-lime-200 p-4 pb-24 md:gap-y-0 md:py-24 lg:px-16 2xl:px-24">
-        <FadeIn as="h1" startY={10} className="pt-6 text-3xl md:text-6xl 2xl:text-6xl">
-          Contact
+        <FadeIn as="div" startY={10} className="flex gap-x-4">
+          <h1 className="pt-6 text-4xl md:text-6xl 2xl:text-6xl">Contact</h1>
+          <aside>
+            <Clock />
+          </aside>
         </FadeIn>
 
         <FadeIn

@@ -59,7 +59,7 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
 
   const pathname = usePathname();
 
-  const setContainerSize = () => {
+  const setMobileContainerSize = () => {
     if (mobileContainerRef.current) {
       const newHeight = `calc(${window.innerHeight}px - ${
         window.visualViewport ? window.visualViewport.height - window.innerHeight : 0
@@ -71,10 +71,10 @@ export const Navigation: React.FC<NavigationProps> = ({ dictionnary, iconColor, 
   };
 
   useEffect(() => {
-    unlockScroll(); // Unlock scroll on page change
-    setContainerSize();
-    window.addEventListener("resize", setContainerSize);
-    return () => window.removeEventListener("resize", setContainerSize);
+    unlockScroll();
+    setMobileContainerSize();
+    window.addEventListener("resize", setMobileContainerSize);
+    return () => window.removeEventListener("resize", setMobileContainerSize);
   }, [pathname, unlockScroll]);
 
   return (
